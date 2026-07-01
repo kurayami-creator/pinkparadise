@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>🌸 Pink Paradise — Магазин услуг</title>
+    <title>🌸 Pink Paradise</title>
     <style>
-        /* ===== ОБЩИЕ СТИЛИ ===== */
         * {
             margin: 0;
             padding: 0;
@@ -13,36 +12,57 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffe6f0 0%, #ffcce0 100%);
+            font-family: 'Segoe UI', 'Yu Gothic', sans-serif;
             min-height: 100vh;
             padding: 20px;
+            background: url('https://i.imgur.com/8xY3Q4n.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Полупрозрачный слой поверх фона */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 240, 245, 0.7);
+            backdrop-filter: blur(2px);
+            z-index: 0;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         /* ===== ШАПКА ===== */
         .header {
             text-align: center;
-            padding: 30px 20px;
-            background: white;
+            padding: 35px 20px;
+            background: rgba(255, 255, 255, 0.85);
             border-radius: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.2);
+            box-shadow: 0 10px 40px rgba(255, 105, 180, 0.15);
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .header h1 {
-            font-size: 48px;
-            color: #ff69b4;
+            font-size: 52px;
+            color: #d4547a;
             margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(255, 105, 180, 0.2);
         }
 
         .header p {
-            color: #666;
+            color: #777;
             font-size: 18px;
+            letter-spacing: 2px;
         }
 
         /* ===== КАТЕГОРИИ ===== */
@@ -62,22 +82,24 @@
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
-            background: white;
-            color: #ff69b4;
-            border: 2px solid #ff69b4;
+            background: rgba(255, 255, 255, 0.8);
+            color: #d4547a;
+            border: 2px solid #f8c8d8;
+            backdrop-filter: blur(5px);
         }
 
         .cat-btn.active {
-            background: #ff69b4;
+            background: #d4547a;
             color: white;
+            border-color: #d4547a;
         }
 
         .cat-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+            box-shadow: 0 5px 20px rgba(212, 84, 122, 0.3);
         }
 
-        /* ===== КАРТОЧКИ ТОВАРОВ ===== */
+        /* ===== КАРТОЧКИ ===== */
         .products {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -86,19 +108,19 @@
         }
 
         .product-card {
-            background: white;
-            border-radius: 20px;
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 25px;
+            padding: 22px;
             text-align: center;
             transition: all 0.3s;
-            cursor: pointer;
-            border: 2px solid transparent;
+            border: 1px solid rgba(255, 182, 193, 0.2);
+            backdrop-filter: blur(5px);
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            border-color: #ff69b4;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 45px rgba(212, 84, 122, 0.15);
+            border-color: #f8c8d8;
         }
 
         .product-emoji {
@@ -109,7 +131,7 @@
         .product-title {
             font-size: 18px;
             font-weight: bold;
-            color: #333;
+            color: #4a3a40;
             margin-bottom: 8px;
         }
 
@@ -122,12 +144,12 @@
         .product-price {
             font-size: 24px;
             font-weight: bold;
-            color: #ff69b4;
+            color: #d4547a;
             margin-bottom: 15px;
         }
 
         .select-btn {
-            background: #ff69b4;
+            background: #d4547a;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -139,22 +161,23 @@
         }
 
         .select-btn:hover {
-            background: #ff3388;
+            background: #b84366;
             transform: scale(1.02);
         }
 
         /* ===== КОРЗИНА ===== */
         .cart-section {
-            background: white;
+            background: rgba(255, 255, 255, 0.88);
             border-radius: 30px;
             padding: 25px;
             margin-top: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 182, 193, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .cart-title {
             font-size: 24px;
-            color: #ff69b4;
+            color: #d4547a;
             margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
@@ -173,18 +196,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px;
-            border-bottom: 1px solid #ffe0ec;
+            border-bottom: 1px solid #f8e0e8;
             flex-wrap: wrap;
             gap: 10px;
         }
 
-        .cart-item-info {
-            flex: 2;
-        }
-
         .cart-item-name {
             font-weight: bold;
-            color: #333;
+            color: #4a3a40;
         }
 
         .cart-item-details {
@@ -194,12 +213,12 @@
 
         .cart-item-price {
             font-weight: bold;
-            color: #ff69b4;
+            color: #d4547a;
             min-width: 80px;
         }
 
         .cart-item-remove {
-            background: #ff4444;
+            background: #e07c7c;
             color: white;
             border: none;
             padding: 5px 12px;
@@ -212,18 +231,18 @@
             text-align: right;
             padding-top: 20px;
             margin-top: 20px;
-            border-top: 2px solid #ffe0ec;
+            border-top: 2px solid #f8e0e8;
             font-size: 20px;
             font-weight: bold;
         }
 
         .cart-total span {
-            color: #ff69b4;
+            color: #d4547a;
             font-size: 28px;
         }
 
         .order-btn {
-            background: #ff69b4;
+            background: #d4547a;
             color: white;
             border: none;
             padding: 15px 30px;
@@ -237,17 +256,16 @@
         }
 
         .order-btn:hover {
-            background: #ff3388;
-            transform: scale(1.02);
+            background: #b84366;
         }
 
         .empty-cart {
             text-align: center;
             padding: 40px;
-            color: #999;
+            color: #bbb;
         }
 
-        /* ===== МОДАЛЬНОЕ ОКНО ===== */
+        /* ===== МОДАЛКА ===== */
         .modal {
             display: none;
             position: fixed;
@@ -259,6 +277,7 @@
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            backdrop-filter: blur(5px);
         }
 
         .modal-content {
@@ -269,10 +288,11 @@
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
+            border: 1px solid #f8c8d8;
         }
 
         .modal-content h3 {
-            color: #ff69b4;
+            color: #d4547a;
             margin-bottom: 20px;
         }
 
@@ -280,14 +300,14 @@
             display: block;
             margin: 15px 0 5px;
             font-weight: bold;
-            color: #333;
+            color: #4a3a40;
         }
 
         .modal-content input,
         .modal-content textarea {
             width: 100%;
             padding: 10px;
-            border: 2px solid #ffe0ec;
+            border: 2px solid #f8e0e8;
             border-radius: 15px;
             font-family: inherit;
         }
@@ -313,16 +333,15 @@
         }
 
         .modal-submit {
-            background: #ff69b4;
+            background: #d4547a;
             color: white;
         }
 
         .modal-cancel {
-            background: #ddd;
-            color: #333;
+            background: #e8e8e8;
+            color: #555;
         }
 
-        /* ===== АДАПТИВ ===== */
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 32px;
@@ -331,19 +350,45 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ===== АНИМАЦИЯ САКУРЫ ===== */
+        .sakura {
+            position: fixed;
+            top: -10%;
+            font-size: 24px;
+            opacity: 0.5;
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 0;
+            color: #f8c8d8;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0.1;
+            }
+        }
     </style>
 </head>
 <body>
 
+    <!-- Фон сакуры -->
+    <div id="sakura-container"></div>
+
     <div class="container">
 
-        <!-- ===== ШАПКА ===== -->
+        <!-- ШАПКА -->
         <div class="header">
             <h1>🌸 Pink Paradise 🌸</h1>
             <p>Фото · Видео · Костюмы · На заказ</p>
         </div>
 
-        <!-- ===== КАТЕГОРИИ ===== -->
+        <!-- КАТЕГОРИИ -->
         <div class="categories">
             <button class="cat-btn active" data-cat="all">Все</button>
             <button class="cat-btn" data-cat="photo">📸 Фото</button>
@@ -352,10 +397,10 @@
             <button class="cat-btn" data-cat="custom">✨ На заказ</button>
         </div>
 
-        <!-- ===== ТОВАРЫ ===== -->
+        <!-- ТОВАРЫ -->
         <div class="products" id="products"></div>
 
-        <!-- ===== КОРЗИНА ===== -->
+        <!-- КОРЗИНА -->
         <div class="cart-section">
             <div class="cart-title">
                 <span>🛒 Корзина</span>
@@ -368,23 +413,18 @@
 
     </div>
 
-    <!-- ===== МОДАЛЬНОЕ ОКНО ===== -->
+    <!-- МОДАЛКА -->
     <div class="modal" id="order-modal">
         <div class="modal-content">
             <h3>🌸 Оформление заказа</h3>
-
             <label>Ваше имя в Discord</label>
             <input type="text" id="username" placeholder="@username или ID" />
-
             <label>Выбранный товар</label>
             <input type="text" id="selected-product" readonly />
-
             <label>Количество/Подробности</label>
             <textarea id="order-details" placeholder="Напишите, что именно хотите заказать..."></textarea>
-
             <label>Контакт для связи</label>
             <input type="text" id="contact" placeholder="Discord, Telegram или другой способ связи" />
-
             <div class="modal-buttons">
                 <button class="modal-submit" id="submit-order">✅ Отправить</button>
                 <button class="modal-cancel" id="cancel-order">❌ Отмена</button>
@@ -392,31 +432,24 @@
         </div>
     </div>
 
-    <!-- ===== СКРИПТ ===== -->
     <script>
         // ===== ТОВАРЫ =====
         const products = [
-            // Фото
             { id: 1, name: "📸 Одно любое фото", price: 50, desc: "1 фото на ваш выбор", category: "photo" },
             { id: 2, name: "📸 5 любых фото", price: 200, desc: "5 фото (выгодно!)", category: "photo" },
             { id: 3, name: "📸 10 любых фото", price: 425, desc: "10 фото", category: "photo" },
             { id: 4, name: "📸 15 любых фото", price: 600, desc: "15 фото (максимум!)", category: "photo" },
             { id: 5, name: "📸 Все фото (без костюмов)", price: 1500, desc: "Абсолютно все фото", category: "photo" },
-            // Видео
             { id: 6, name: "🎥 Одно любое видео", price: 200, desc: "1 видео без ограничений", category: "video" },
             { id: 7, name: "🎥 3 любых видео", price: 500, desc: "3 видео", category: "video" },
             { id: 8, name: "🎥 5 любых видео", price: 850, desc: "5 видео", category: "video" },
             { id: 9, name: "🎥 10 любых видео", price: 1800, desc: "10 видео", category: "video" },
-            // Костюмы
-            { id: 10, name: "👗 Ушки/лапки", price: 25, desc: "Оленьи, заячьи, котика", category: "costume", isAddon: true,
-                forType: "photo" },
+            { id: 10, name: "👗 Ушки/лапки", price: 25, desc: "Оленьи, заячьи, котика", category: "costume", isAddon: true },
             { id: 11, name: "👗 Средний костюм", price: 75, desc: "Школьница, латекс, с мечом", category: "costume",
-                isAddon: true, forType: "photo" },
+            isAddon: true },
             { id: 12, name: "👗 Качественный костюм", price: 200, desc: "Суккуб, кролик, монашка", category: "costume",
-                isAddon: true, forType: "photo" },
-            { id: 13, name: "👗 Полностью голая", price: 50, desc: "Добавка к фото", category: "costume", isAddon: true,
-                forType: "photo" },
-            // На заказ
+                isAddon: true },
+            { id: 13, name: "👗 Полностью голая", price: 50, desc: "Добавка к фото", category: "costume", isAddon: true },
             { id: 14, name: "✨ Видео на заказ", price: 1250, desc: "Скажу/сделаю что захочешь", category: "custom" },
             { id: 15, name: "✨ Общение с вебкой", price: 1500, desc: "Покажу на вебке что захочешь", category: "custom" },
             { id: 16, name: "✨ Флирт/общение 1 день", price: 750, desc: "С войсом ×2", category: "custom" },
@@ -425,10 +458,9 @@
             { id: 19, name: "✨ Общение ВЕЧНО", price: 5000, desc: "Всё включено навсегда", category: "custom" }
         ];
 
-        // ===== КОРЗИНА =====
         let cart = [];
 
-        // ===== DOM =====
+        // DOM
         const productsContainer = document.getElementById('products');
         const cartItemsContainer = document.getElementById('cart-items');
         const cartTotalSpan = document.querySelector('#cart-total span');
@@ -439,95 +471,92 @@
         const submitOrderBtn = document.getElementById('submit-order');
         const cancelOrderBtn = document.getElementById('cancel-order');
 
-        // ===== ОТОБРАЗИТЬ ТОВАРЫ =====
         function renderProducts(category = 'all') {
             const filtered = products.filter(p => category === 'all' || p.category === category);
-            productsContainer.innerHTML = filtered.map(product => `
-                    <div class="product-card" data-id="${product.id}">
-                        <div class="product-emoji">${product.name.split(' ')[0]}</div>
-                        <div class="product-title">${product.name}</div>
-                        <div class="product-desc">${product.desc}</div>
-                        <div class="product-price">${product.price} ₽</div>
-                        <button class="select-btn" onclick="addToCart(${product.id})">➕ Добавить</button>
-                    </div>
-                `).join('');
+            productsContainer.innerHTML = filtered.map(p => `
+                <div class="product-card">
+                    <div class="product-emoji">${p.name.split(' ')[0]}</div>
+                    <div class="product-title">${p.name}</div>
+                    <div class="product-desc">${p.desc}</div>
+                    <div class="product-price">${p.price} ₽</div>
+                    <button class="select-btn" onclick="addToCart(${p.id})">➕ Добавить</button>
+                </div>
+            `).join('');
         }
 
-        // ===== ДОБАВИТЬ В КОРЗИНУ =====
+        // ===== ДОБАВЛЕНИЕ С ПРОВЕРКОЙ =====
         window.addToCart = function(productId) {
             const product = products.find(p => p.id === productId);
             if (!product) return;
+
+            // Если это костюм — проверяем, есть ли фото в корзине
             if (product.isAddon) {
-                const hasPhoto = cart.some(item => item.category === 'photo' && !item.isAddon);
-                if (!hasPhoto) {
-                    alert('❌ Сначала добавьте фото! Костюмы идут как дополнение к фото.');
+                const photoCount = cart.filter(item => item.category === 'photo' && !item.isAddon).length;
+                const costumeCount = cart.filter(item => item.isAddon).length;
+                if (photoCount === 0) {
+                    alert('❌ Сначала добавьте фото! Костюмы идут как дополнение.');
+                    return;
+                }
+                if (costumeCount >= photoCount) {
+                    alert('❌ Нельзя добавить больше костюмов, чем фото!');
                     return;
                 }
             }
+
             cart.push({ ...product, quantity: 1 });
             renderCart();
         };
 
-        // ===== ОТОБРАЗИТЬ КОРЗИНУ =====
         function renderCart() {
             if (cart.length === 0) {
-                cartItemsContainer.innerHTML = '<div class="empty-cart">🛒 Корзина пуста. Добавьте товары!</div>';
+                cartItemsContainer.innerHTML = '<div class="empty-cart">🛒 Корзина пуста</div>';
                 cartTotalSpan.textContent = '0';
                 return;
             }
             const grouped = {};
             cart.forEach(item => {
                 const key = item.id;
-                if (grouped[key]) {
-                    grouped[key].quantity++;
-                } else {
-                    grouped[key] = { ...item, quantity: 1 };
-                }
+                if (grouped[key]) grouped[key].quantity++;
+                else grouped[key] = { ...item, quantity: 1 };
             });
-            const itemsArray = Object.values(grouped);
-            const total = itemsArray.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            cartItemsContainer.innerHTML = itemsArray.map(item => `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <div class="cart-item-name">${item.name}</div>
-                            <div class="cart-item-details">${item.desc}</div>
-                        </div>
-                        <div class="cart-item-price">${item.price} ₽ × ${item.quantity}</div>
-                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">❌ Удалить</button>
+            const items = Object.values(grouped);
+            const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            cartItemsContainer.innerHTML = items.map(item => `
+                <div class="cart-item">
+                    <div>
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-details">${item.desc}</div>
                     </div>
-                `).join('');
+                    <div class="cart-item-price">${item.price} ₽ × ${item.quantity}</div>
+                    <button class="cart-item-remove" onclick="removeFromCart(${item.id})">❌</button>
+                </div>
+            `).join('');
             cartTotalSpan.textContent = total;
         }
 
-        // ===== УДАЛИТЬ ИЗ КОРЗИНЫ =====
-        window.removeFromCart = function(productId) {
-            const index = cart.findIndex(item => item.id === productId);
+        window.removeFromCart = function(id) {
+            const index = cart.findIndex(item => item.id === id);
             if (index !== -1) {
                 cart.splice(index, 1);
                 renderCart();
             }
         };
 
-        // ===== ОЧИСТИТЬ КОРЗИНУ =====
         clearCartBtn.addEventListener('click', () => {
-            if (confirm('Очистить всю корзину?')) {
-                cart = [];
-                renderCart();
-            }
+            if (confirm('Очистить корзину?')) { cart = [];
+                renderCart(); }
         });
 
-        // ===== ОТКРЫТЬ МОДАЛКУ =====
+        // ===== ОФОРМЛЕНИЕ ЗАКАЗА =====
         orderBtn.addEventListener('click', () => {
             if (cart.length === 0) {
-                alert('❌ Корзина пуста! Добавьте товары.');
+                alert('❌ Корзина пуста!');
                 return;
             }
-            const total = cart.reduce((sum, item) => sum + item.price, 0);
             modalProduct.value = cart.map(item => `${item.name} (${item.price}₽)`).join(', ');
             modal.style.display = 'flex';
         });
 
-        // ===== ЗАКРЫТЬ МОДАЛКУ =====
         cancelOrderBtn.addEventListener('click', () => {
             modal.style.display = 'none';
             document.getElementById('username').value = '';
@@ -535,31 +564,26 @@
             document.getElementById('contact').value = '';
         });
 
-        // ===== ОТПРАВИТЬ ЗАКАЗ =====
+        // ===== ОТПРАВКА ЗАКАЗА =====
         submitOrderBtn.addEventListener('click', () => {
             const username = document.getElementById('username').value.trim();
             const details = document.getElementById('order-details').value.trim();
             const contact = document.getElementById('contact').value.trim();
-            if (!username) {
-                alert('❌ Укажите ваше имя в Discord!');
-                return;
-            }
-            if (!details) {
-                alert('❌ Напишите подробности заказа!');
-                return;
-            }
+
+            if (!username) { alert('❌ Укажите имя в Discord!'); return; }
+            if (!details) { alert('❌ Напишите подробности!'); return; }
+
             const total = cart.reduce((sum, item) => sum + item.price, 0);
-            const orderText =
+            const text =
                 `🌸 НОВЫЙ ЗАКАЗ 🌸\n\n👤 Заказчик: ${username}\n📞 Контакты: ${contact || 'Не указаны'}\n\n🛒 Товары:\n${cart.map(item => `• ${item.name} — ${item.price}₽`).join('\n')}\n\n💰 Итого: ${total} ₽\n\n📝 Пожелания:\n${details}`;
-            localStorage.setItem('lastOrder', orderText);
-            alert(`✅ Заказ оформлен!\n\nИтого: ${total} ₽\n\nСкопируйте текст заказа и отправьте администратору:\n\n${orderText}`);
-            const copyWindow = window.open();
-            copyWindow.document.write(
-                `<pre style="font-family: monospace; white-space: pre-wrap; padding: 20px;">${orderText}</pre>`
-                );
-            copyWindow.document.write(
-                '<button onclick="navigator.clipboard.writeText(document.querySelector(\'pre\').innerText)">📋 Копировать</button>'
-                );
+
+            // ===== ВСТАВЬ СЮДА СВОЙ WEBHOOK URL (ЕСЛИ НУЖНО) =====
+            // const WEBHOOK_URL = 'https://discord.com/api/webhooks/1521867353565036737/N_7oilb5EJC7QPShSvcqW1A2BN0Ztot4yZ4KuZ69dbdHq5cVpdek9R5UyoJ32DNXudhT';
+            // fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content: text }) });
+
+            alert(`✅ Заказ оформлен!\n\nСкопируйте текст и отправьте продавцу:\n\n${text}`);
+            navigator.clipboard.writeText(text);
+
             cart = [];
             renderCart();
             modal.style.display = 'none';
@@ -568,7 +592,7 @@
             document.getElementById('contact').value = '';
         });
 
-        // ===== ФИЛЬТРАЦИЯ ПО КАТЕГОРИЯМ =====
+        // ===== ФИЛЬТРАЦИЯ =====
         document.querySelectorAll('.cat-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -577,7 +601,23 @@
             });
         });
 
-        // ===== СТАРТ =====
+        // ===== САКУРА НА ФОНЕ =====
+        function createSakura() {
+            const container = document.getElementById('sakura-container');
+            const petals = ['🌸', '🌸', '🌸', '🌸', '🌸', '🌸', '🌸', '🌸', '🌸', '🌸', '🌸', '🌸'];
+            for (let i = 0; i < 25; i++) {
+                const el = document.createElement('div');
+                el.className = 'sakura';
+                el.textContent = petals[Math.floor(Math.random() * petals.length)];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.fontSize = (14 + Math.random() * 22) + 'px';
+                el.style.animationDuration = (8 + Math.random() * 16) + 's';
+                el.style.animationDelay = (Math.random() * 20) + 's';
+                container.appendChild(el);
+            }
+        }
+        createSakura();
+
         renderProducts();
     </script>
 
