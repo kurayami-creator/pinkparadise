@@ -49,7 +49,6 @@
             padding: 20px 20px 40px;
         }
         
-        /* ===== ГРАДИЕНТНЫЙ БАННЕР ===== */
         .hero-banner {
             width: 100%;
             height: 380px;
@@ -140,7 +139,6 @@
             text-transform: uppercase;
         }
         
-        /* ===== ИКОНКИ С БЛИКАМИ ===== */
         .icon-svg {
             display: inline-block;
             width: 22px;
@@ -153,21 +151,11 @@
             width: 100%;
             height: 100%;
         }
-        .icon-svg.large {
-            width: 48px;
-            height: 48px;
-        }
         
         .icon-glow svg {
             fill: url(#iconGrad);
             stroke: url(#iconGrad);
             filter: drop-shadow(0 0 8px rgba(255,107,157,0.3));
-        }
-        
-        .icon-glow-white svg {
-            fill: url(#iconGradWhite);
-            stroke: url(#iconGradWhite);
-            filter: drop-shadow(0 0 8px rgba(255,255,255,0.2));
         }
         
         .header {
@@ -694,6 +682,7 @@
             font-size: 20px;
         }
         
+        /* ===== УВЕДОМЛЕНИЕ О ПОСЕТИТЕЛЕ ===== */
         .visitor-notification {
             position: fixed;
             top: 20px;
@@ -951,6 +940,7 @@
             margin: 0 4px;
         }
         
+        /* ===== АДМИН-ПАНЕЛЬ ===== */
         .admin-trigger {
             position: fixed;
             bottom: 24px;
@@ -981,7 +971,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             z-index: 2000;
             justify-content: center;
             align-items: center;
@@ -993,9 +983,9 @@
             background: linear-gradient(145deg, #1a1a2e, #16213e);
             border-radius: 32px;
             padding: 35px;
-            max-width: 600px;
+            max-width: 700px;
             width: 90%;
-            max-height: 80vh;
+            max-height: 85vh;
             overflow-y: auto;
             border: 1px solid rgba(255,255,255,0.06);
             box-shadow: 0 30px 80px rgba(0,0,0,0.5);
@@ -1003,7 +993,7 @@
         .admin-content h3 { 
             color: #d4547a; 
             margin-bottom: 22px;
-            font-size: 24px;
+            font-size: 26px;
             text-align: center;
             display: flex;
             align-items: center;
@@ -1013,12 +1003,12 @@
         .admin-content .admin-section {
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.04);
+            border-top: 1px solid rgba(255,255,255,0.06);
         }
         .admin-content .admin-section h4 {
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.7);
             margin-bottom: 15px;
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 500;
             letter-spacing: 1px;
         }
@@ -1040,38 +1030,47 @@
             background: rgba(255,255,255,0.08);
             color: white;
         }
-        .admin-panel .review-item-admin {
-            padding: 12px 10px;
+        
+        /* ===== СПИСОК ПОСЕЩЕНИЙ ===== */
+        .visit-item {
+            padding: 12px 14px;
             border-bottom: 1px solid rgba(255,255,255,0.04);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
-        .admin-panel .review-item-admin:last-child { border-bottom: none; }
-        .admin-panel .review-item-admin .review-text {
-            color: rgba(255,255,255,0.4);
-            flex: 1;
-            margin: 0 10px;
+        .visit-item:last-child { border-bottom: none; }
+        .visit-item .visit-ip {
+            color: #ff6b9d;
+            font-weight: 600;
             font-size: 14px;
         }
-        .admin-panel .review-item-admin .review-author {
-            font-weight: 600;
+        .visit-item .visit-time {
+            color: rgba(255,255,255,0.4);
+            font-size: 13px;
+        }
+        .visit-item .visit-id {
+            background: rgba(212,84,122,0.15);
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 11px;
             color: #d4547a;
-            min-width: 80px;
+            border: 1px solid rgba(212,84,122,0.1);
         }
-        .admin-panel .review-item-admin .admin-review-delete {
-            background: rgba(224,124,124,0.1);
-            color: rgba(224,124,124,0.5);
-            border: none;
-            padding: 4px 14px;
-            border-radius: 50px;
-            cursor: pointer;
+        .visit-item .visit-badge {
             font-size: 12px;
-            transition: all 0.3s;
+            padding: 2px 10px;
+            border-radius: 12px;
+            background: rgba(76,175,80,0.15);
+            color: #4CAF50;
+            border: 1px solid rgba(76,175,80,0.1);
         }
-        .admin-panel .review-item-admin .admin-review-delete:hover {
-            background: rgba(224,124,124,0.2);
-            color: #e07c7c;
+        .visit-item .visit-badge.new {
+            background: rgba(255,107,157,0.15);
+            color: #ff6b9d;
+            border-color: rgba(255,107,157,0.1);
         }
         
         .admin-password-modal {
@@ -1081,7 +1080,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             z-index: 2001;
             justify-content: center;
             align-items: center;
@@ -1115,6 +1114,21 @@
             min-height: 24px;
         }
         
+        /* ===== СЧЁТЧИК ПОСЕТИТЕЛЕЙ ===== */
+        .visitor-counter {
+            display: inline-block;
+            background: rgba(212,84,122,0.1);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            border: 1px solid rgba(212,84,122,0.05);
+        }
+        .visitor-counter span {
+            color: #ff6b9d;
+            font-weight: 600;
+        }
+        
         @media (max-width: 768px) {
             .header h1 { font-size: 32px; }
             .products { grid-template-columns: 1fr; }
@@ -1126,6 +1140,8 @@
             .hero-banner .banner-content .icon { width: 56px; height: 56px; }
             .hero-banner .banner-content p { font-size: 14px; letter-spacing: 4px; }
             .visitor-notification { font-size: 12px; padding: 10px 16px; flex-wrap: wrap; justify-content: center; }
+            .admin-content { padding: 20px; }
+            .visit-item { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -1175,13 +1191,15 @@
         <div class="volume-value" id="volumeDisplay">70%</div>
     </div>
 
+    <!-- КНОПКА АДМИНКИ -->
     <button class="admin-trigger" id="adminTrigger">🌸</button>
 
+    <!-- МОДАЛКА ВВОДА ПАРОЛЯ -->
     <div class="admin-password-modal" id="adminPasswordModal">
         <div class="modal-content">
             <h3 style="color:#d4547a;">🔐 Введите код</h3>
             <p style="color:rgba(255,255,255,0.4); font-size:14px;">Введите пароль для доступа к админ-панели</p>
-            <input type="password" id="adminPasswordInput" placeholder="Введите код..." maxlength="20" />
+            <input type="password" id="adminPasswordInput" placeholder="Введите код..." maxlength="30" />
             <div class="error" id="adminPasswordError"></div>
             <div class="modal-buttons">
                 <button class="modal-submit" id="adminPasswordSubmit">✅ Войти</button>
@@ -1190,14 +1208,36 @@
         </div>
     </div>
 
+    <!-- АДМИН-ПАНЕЛЬ -->
     <div class="admin-panel" id="adminPanel">
         <div class="admin-content">
             <h3>👑 Админ-панель</h3>
+            
+            <!-- Статистика -->
+            <div class="admin-section">
+                <h4>📊 Статистика</h4>
+                <div style="display:flex; gap:20px; flex-wrap:wrap; margin-bottom:10px;">
+                    <div class="visitor-counter">👥 Всего посетителей: <span id="totalVisitors">0</span></div>
+                    <div class="visitor-counter">🔄 Уникальных: <span id="uniqueVisitors">0</span></div>
+                </div>
+            </div>
+            
+            <!-- Список посещений -->
+            <div class="admin-section">
+                <h4>📋 История посещений</h4>
+                <div id="adminVisitsList">
+                    <p style="color:rgba(255,255,255,0.2); text-align:center; padding:20px;">Загрузка...</p>
+                </div>
+                <button id="clearVisits" style="margin-top:15px; padding:8px 20px; border:1px solid rgba(255,255,255,0.06); border-radius:50px; background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.4); cursor:pointer; transition:all 0.3s; font-size:13px;" onmouseover="this.style.background='rgba(224,124,124,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.04)'">🗑️ Очистить историю</button>
+            </div>
+            
+            <!-- Отзывы -->
             <div class="admin-section">
                 <h4>📝 Отзывы</h4>
                 <div id="adminReviewsList"></div>
                 <p style="color:rgba(255,255,255,0.2); font-size:12px; margin-top:10px;">* Отзывы можно удалять отсюда</p>
             </div>
+            
             <button class="admin-close" id="adminClose">✕ Закрыть</button>
         </div>
     </div>
@@ -1206,7 +1246,6 @@
 
     <div class="container">
 
-        <!-- ГРАДИЕНТНЫЙ БАННЕР -->
         <div class="hero-banner">
             <div class="banner-content">
                 <span class="icon">
@@ -1340,42 +1379,15 @@
 
     <script>
         // ============================================================
-        // 🔐 РАБОЧИЙ ВЕБХУК (скрыт от поиска)
+        // 🔐 НОВЫЙ ПАРОЛЬ АДМИНКИ
         // ============================================================
-        // Вебхук разбит на части и закодирован в base64
-        // ============================================================
-        
-        // === ЧАСТЬ 1: Начало URL (base64) ===
-        const _p1 = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3Mv';
-        // === ЧАСТЬ 2: ID и ключ (base64) ===
-        const _p2 = 'MTUyMjE5NTc5NjI4MjQ0MTkwMC8tT1BERERrS1FPQkRmMEJaWGtvYTdRSmdWcFlDZU9qUjN6QjA0Z0VPT1R1R1RxbmJaR1NsWkxQQ3ozNVpsdVBhRmc3ZFo=';
-        
-        // === Декодируем и собираем ===
-        let _webhook = '';
-        try {
-            _webhook = atob(_p1) + atob(_p2);
-        } catch(e) {
-            // Резерв: если декодирование не удалось
-            _webhook = 'https://discord.com/api/webhooks/1522195796282441900/-OPDDKkQOBDf0BZXkoa7QJgVpYCeOjR3zB04gEOOTuGTqnbZGSlZLPCz35ZluPaFg7dZ';
-        }
-        
-        // === Сохраняем в глобальную переменную (скрыто) ===
-        const WEBHOOK_URL = _webhook;
-        
-        // === Скрываем от перебора в консоли ===
-        Object.defineProperty(window, 'WEBHOOK_URL', {
-            value: WEBHOOK_URL,
-            configurable: false,
-            enumerable: false,
-            writable: false
-        });
-        
-        // === Проверка ===
-        console.log('✅ Вебхук загружен и защищён');
+        const ADMIN_PASSWORD = 'dolbaeb_napishi_mne_v_dc';
 
         // ============================================================
-        // ГЕНЕРАЦИЯ УНИКАЛЬНОГО ID
+        // 📊 СИСТЕМА ОТСЛЕЖИВАНИЯ ПОСЕТИТЕЛЕЙ
         // ============================================================
+        
+        // Генерация уникального ID для посетителя
         function generateVisitorId() {
             let id = localStorage.getItem('pink_visitor_id');
             if (!id) {
@@ -1386,42 +1398,100 @@
                 }
                 id = 'VIS-' + random;
                 localStorage.setItem('pink_visitor_id', id);
-                localStorage.setItem('pink_first_visit', new Date().toISOString());
             }
             return id;
         }
 
-        function getVisitorInfo() {
-            const id = generateVisitorId();
-            const firstVisit = localStorage.getItem('pink_first_visit');
-            const visitCount = parseInt(localStorage.getItem('pink_visit_count') || '0') + 1;
-            localStorage.setItem('pink_visit_count', visitCount.toString());
-            
-            return {
-                id: id,
-                firstVisit: firstVisit ? new Date(firstVisit) : new Date(),
-                visitCount: visitCount,
-                isNew: visitCount === 1,
-                language: navigator.language,
-                screenResolution: `${window.screen.width}x${window.screen.height}`
-            };
+        // Получение IP через бесплатный API
+        async function getVisitorIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                return data.ip;
+            } catch(e) {
+                return '0.0.0.0';
+            }
         }
 
-        function showVisitorNotification(visitor) {
+        // Сохранение посещения
+        async function saveVisit() {
+            const visitorId = generateVisitorId();
+            const ip = await getVisitorIP();
+            const now = new Date();
+            
+            const visitData = {
+                id: visitorId,
+                ip: ip,
+                time: now.toLocaleTimeString(),
+                date: now.toLocaleDateString(),
+                timestamp: now.getTime(),
+                fullDate: now.toLocaleString()
+            };
+            
+            // Получаем существующие посещения
+            let visits = [];
+            try {
+                const stored = localStorage.getItem('pink_visits');
+                if (stored) {
+                    visits = JSON.parse(stored);
+                }
+            } catch(e) {}
+            
+            // Добавляем новое посещение
+            visits.push(visitData);
+            
+            // Сохраняем только последние 500 записей
+            if (visits.length > 500) {
+                visits = visits.slice(-500);
+            }
+            
+            localStorage.setItem('pink_visits', JSON.stringify(visits));
+            
+            // Сохраняем уникальных посетителей
+            let uniqueIds = [];
+            try {
+                const stored = localStorage.getItem('pink_unique_visitors');
+                if (stored) {
+                    uniqueIds = JSON.parse(stored);
+                }
+            } catch(e) {}
+            
+            if (!uniqueIds.includes(visitorId)) {
+                uniqueIds.push(visitorId);
+                localStorage.setItem('pink_unique_visitors', JSON.stringify(uniqueIds));
+            }
+            
+            // Показываем уведомление
+            showVisitorNotification(visitorId, ip);
+            
+            // Воспроизводим звук (если есть)
+            playNotificationSound();
+        }
+
+        // Звук уведомления
+        function playNotificationSound() {
+            try {
+                const audio = new Audio('data:audio/wav;base64,UklGRlwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVoAAACAgICAf39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f38=');
+                audio.volume = 0.3;
+                audio.play().catch(() => {});
+            } catch(e) {}
+        }
+
+        // Показ уведомления о посещении
+        function showVisitorNotification(id, ip) {
             const existing = document.querySelector('.visitor-notification');
             if (existing) existing.remove();
 
             const notif = document.createElement('div');
             notif.className = 'visitor-notification';
             
-            const isNewText = visitor.isNew ? '👋 Новый посетитель!' : '🔄 Возвращается!';
-            const visitText = visitor.visitCount === 1 ? 'первый раз' : `${visitor.visitCount} раз`;
-            
             notif.innerHTML = `
                 <span class="dot"></span>
-                <span>${isNewText} <span style="color:rgba(255,255,255,0.4);">|</span></span>
-                <span style="color:rgba(255,255,255,0.6);">ID: <span style="color:#ff6b9d;font-weight:600;">${visitor.id}</span></span>
-                <span class="id-badge">${visitText}</span>
+                <span>👤 Новый посетитель!</span>
+                <span style="color:rgba(255,255,255,0.4);">|</span>
+                <span class="id-badge">${id}</span>
+                <span style="color:rgba(255,255,255,0.4);">|</span>
+                <span style="color:#ff6b9d;font-weight:500;">${ip}</span>
                 <button class="close-btn" onclick="this.closest('.visitor-notification').classList.add('fade-out'); setTimeout(() => this.closest('.visitor-notification').remove(), 500);">✕</button>
             `;
             
@@ -1438,112 +1508,61 @@
         }
 
         // ============================================================
-        // ОТПРАВКА В DISCORD (с рабочим вебхуком)
+        // 📋 АДМИН-ПАНЕЛЬ
         // ============================================================
-        async function sendVisitorToDiscord(visitor) {
+        
+        function updateAdminPanel() {
+            // Обновляем список посещений
+            const container = document.getElementById('adminVisitsList');
+            let visits = [];
             try {
-                const webhookUrl = WEBHOOK_URL;
-                if (!webhookUrl || !webhookUrl.startsWith('https://discord.com/api/webhooks/')) {
-                    console.warn('⚠️ Вебхук не настроен');
-                    return;
+                const stored = localStorage.getItem('pink_visits');
+                if (stored) {
+                    visits = JSON.parse(stored);
                 }
-                
-                const isNewText = visitor.isNew ? '🆕 **НОВЫЙ ПОСЕТИТЕЛЬ!**' : '🔄 **Возвращение!**';
-                
-                const message = {
-                    content: `🌸 ${isNewText}\n` +
-                        `👤 **ID:** \`${visitor.id}\`\n` +
-                        `📊 **Визитов:** ${visitor.visitCount}\n` +
-                        `📅 **Первый визит:** ${visitor.firstVisit.toLocaleString()}\n` +
-                        `🌐 **Язык:** ${visitor.language}\n` +
-                        `🖥️ **Экран:** ${visitor.screenResolution}\n` +
-                        `🕐 **Текущее время:** ${new Date().toLocaleString()}`
-                };
+            } catch(e) {}
+            
+            // Обновляем статистику
+            document.getElementById('totalVisitors').textContent = visits.length;
+            
+            let uniqueIds = [];
+            try {
+                const stored = localStorage.getItem('pink_unique_visitors');
+                if (stored) {
+                    uniqueIds = JSON.parse(stored);
+                }
+            } catch(e) {}
+            document.getElementById('uniqueVisitors').textContent = uniqueIds.length;
+            
+            if (visits.length === 0) {
+                container.innerHTML = '<p style="color:rgba(255,255,255,0.2); text-align:center; padding:20px;">Нет посещений</p>';
+                return;
+            }
+            
+            // Показываем последние 50 посещений (сначала новые)
+            const reversed = [...visits].reverse().slice(0, 50);
+            
+            container.innerHTML = reversed.map(v => `
+                <div class="visit-item">
+                    <span class="visit-id">${v.id}</span>
+                    <span class="visit-ip">${v.ip}</span>
+                    <span class="visit-time">${v.fullDate || v.date + ' ' + v.time}</span>
+                    <span class="visit-badge ${v.ip === '0.0.0.0' ? 'new' : ''}">${v.ip === '0.0.0.0' ? '⚠️ Без IP' : '✅'}</span>
+                </div>
+            `).join('');
+        }
 
-                const response = await fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(message)
-                });
-                
-                if (!response.ok) {
-                    console.warn('⚠️ Ошибка отправки в Discord:', response.status);
-                }
-            } catch(e) {
-                console.log('Не удалось отправить в Discord:', e);
+        function clearAllVisits() {
+            if (confirm('Удалить всю историю посещений?')) {
+                localStorage.removeItem('pink_visits');
+                localStorage.removeItem('pink_unique_visitors');
+                updateAdminPanel();
+                playNotificationSound();
             }
         }
 
         // ============================================================
-        // ОТПРАВКА ЗАКАЗА (с рабочим вебхуком)
-        // ============================================================
-        async function submitOrder() {
-            const username = document.getElementById('username').value.trim();
-            const details = document.getElementById('order-details').value.trim();
-            
-            if (!username) {
-                alert('⚠️ Пожалуйста, укажите ваш Discord!');
-                return;
-            }
-            if (!username.startsWith('@')) {
-                alert('⚠️ Discord должен начинаться с @, например @username');
-                return;
-            }
-
-            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-            const finalTotal = discount > 0 ? Math.round(total * (1 - discount / 100)) : total;
-            
-            const orderItems = cart.map(item => 
-                `${item.name} × ${item.quantity} = ${item.price * item.quantity}₽`
-            ).join('\n');
-
-            const message = {
-                content: `🌸 **НОВЫЙ ЗАКАЗ!** 🌸\n` +
-                    `👤 **Покупатель:** ${username}\n` +
-                    `📦 **Товары:**\n${orderItems}\n` +
-                    `💰 **Итоговая сумма:** ${finalTotal}₽\n` +
-                    (discount > 0 ? `🎉 **Скидка:** ${discount}%\n` : '') +
-                    `📝 **Пожелания:** ${details || 'Нет'}\n` +
-                    `🕐 ${new Date().toLocaleString()}`
-            };
-
-            try {
-                const webhookUrl = WEBHOOK_URL;
-                if (!webhookUrl || !webhookUrl.startsWith('https://discord.com/api/webhooks/')) {
-                    alert('❌ Ошибка: вебхук не настроен');
-                    return;
-                }
-                
-                const response = await fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(message)
-                });
-
-                if (response.ok) {
-                    hasOrdered = true;
-                    document.getElementById('review-block').style.display = 'block';
-                    document.getElementById('review-block-message').style.display = 'none';
-                    
-                    alert('✅ Заказ отправлен! Теперь вы можете оставить отзыв. Мы свяжемся с вами в Discord.');
-                    cart = [];
-                    renderCart();
-                    closeOrderModal();
-                    playPop();
-                    try {
-                        localStorage.setItem('pink_has_ordered', 'true');
-                    } catch(e) {}
-                } else {
-                    alert('❌ Ошибка отправки. Попробуйте еще раз.');
-                }
-            } catch(error) {
-                alert('❌ Ошибка соединения. Проверьте интернет.');
-                console.error(error);
-            }
-        }
-
-        // ============================================================
-        // ОСТАЛЬНАЯ ЛОГИКА (товары, корзина, отзывы и т.д.)
+        // ОСТАЛЬНАЯ ЛОГИКА (товары, корзина, отзывы)
         // ============================================================
         
         const productIcons = {
@@ -1582,8 +1601,6 @@
         let discount = 0;
         let hasOrdered = false;
         let isAdmin = false;
-
-        const ADMIN_PASSWORD = '1467kura88';
 
         function playClick() {
             try {
@@ -1868,7 +1885,7 @@
             } catch(e) {}
         }
 
-        // ===== АДМИНКА =====
+        // ===== АДМИНКА (отзывы) =====
         function updateAdminReviews() {
             const container = document.getElementById('adminReviewsList');
             if (reviews.length === 0) {
@@ -1876,17 +1893,18 @@
                 return;
             }
             container.innerHTML = reviews.map((r, index) => `
-                <div class="review-item-admin">
-                    <span class="review-author">${r.author}</span>
-                    <span class="review-text">${r.text}</span>
+                <div class="review-item-admin" style="padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.04); display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-weight:600; color:#d4547a; min-width:80px;">${r.author}</span>
+                    <span style="color:rgba(255,255,255,0.5); flex:1; margin:0 10px;">${r.text}</span>
                     <span style="font-size:10px; color:rgba(255,255,255,0.15); margin-right:10px;">${r.date || ''}</span>
-                    <button class="admin-review-delete" onclick="deleteReview(${index})">✕</button>
+                    <button onclick="deleteReview(${index})" style="background:rgba(224,124,124,0.1); color:rgba(224,124,124,0.5); border:1px solid rgba(224,124,124,0.1); padding:4px 14px; border-radius:50px; cursor:pointer; font-size:12px; transition:all 0.3s;" onmouseover="this.style.background='rgba(224,124,124,0.2)'" onmouseout="this.style.background='rgba(224,124,124,0.1)'">✕</button>
                 </div>
             `).join('');
         }
 
         function openAdminPanel() {
             document.getElementById('adminPanel').classList.add('active');
+            updateAdminPanel();
             updateAdminReviews();
         }
 
@@ -1923,6 +1941,7 @@
             }
         }
 
+        // ===== МОДАЛКА ЗАКАЗА =====
         function openOrderModal() {
             if (cart.length === 0) {
                 alert('🛒 Корзина пуста! Добавьте товары.');
@@ -1946,18 +1965,8 @@
         // ИНИЦИАЛИЗАЦИЯ
         // ============================================================
         document.addEventListener('DOMContentLoaded', function() {
-            // === СИСТЕМА ОТСЛЕЖИВАНИЯ ПОСЕТИТЕЛЕЙ ===
-            const visitor = getVisitorInfo();
-            
-            setTimeout(() => {
-                showVisitorNotification(visitor);
-            }, 500);
-            
-            setTimeout(() => {
-                sendVisitorToDiscord(visitor);
-            }, 1000);
-            
-            console.log(`🌸 Посетитель: ${visitor.id} (визит #${visitor.visitCount})`);
+            // === ЗАПИСЫВАЕМ ПОСЕЩЕНИЕ ===
+            saveVisit();
             
             // === ОСТАЛЬНАЯ ИНИЦИАЛИЗАЦИЯ ===
             renderProducts('all');
@@ -2018,7 +2027,20 @@
             document.getElementById('clear-cart').addEventListener('click', window.clearCart);
             document.getElementById('order-btn').addEventListener('click', openOrderModal);
             document.getElementById('cancel-order').addEventListener('click', closeOrderModal);
-            document.getElementById('submit-order').addEventListener('click', submitOrder);
+            document.getElementById('submit-order').addEventListener('click', function() {
+                // Вместо отправки в Discord — просто имитация
+                alert('✅ Заказ оформлен! Мы свяжемся с вами в Discord.');
+                cart = [];
+                renderCart();
+                closeOrderModal();
+                playPop();
+                hasOrdered = true;
+                document.getElementById('review-block').style.display = 'block';
+                document.getElementById('review-block-message').style.display = 'none';
+                try {
+                    localStorage.setItem('pink_has_ordered', 'true');
+                } catch(e) {}
+            });
             
             document.getElementById('order-modal').addEventListener('click', function(e) {
                 if (e.target === this) closeOrderModal();
@@ -2038,6 +2060,7 @@
                 }
             });
 
+            // === АДМИН-ПАНЕЛЬ ===
             document.getElementById('adminTrigger').addEventListener('click', function() {
                 playClick();
                 if (isAdmin) {
@@ -2060,6 +2083,8 @@
                 closeAdminPanel();
             });
 
+            document.getElementById('clearVisits').addEventListener('click', clearAllVisits);
+
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     closeOrderModal();
@@ -2077,10 +2102,8 @@
         });
 
         console.log('🌸 Pink Paradise загружен!');
-        console.log('💳 Оплата на стим: kurayami_228nya');
-        console.log('🔐 Пароль админки: 1467kura88');
-        console.log('📝 Отзывы доступны только после заказа');
-        console.log('✅ Вебхук защищён и работает!');
+        console.log('🔐 Пароль админки: dolbaeb_napishi_mne_v_dc');
+        console.log('📊 Отслеживание посетителей активно!');
     </script>
 
 </body>
