@@ -140,32 +140,98 @@
             text-transform: uppercase;
         }
         
-        /* ===== ЦВЕТНЫЕ SVG ИКОНКИ ===== */
+        /* ===== SVG ИКОНКИ ===== */
         .icon-svg {
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 22px;
+            height: 22px;
             vertical-align: middle;
             flex-shrink: 0;
+            transition: all 0.3s ease;
         }
         .icon-svg svg {
             width: 100%;
             height: 100%;
         }
-        .icon-svg.large {
-            width: 48px;
-            height: 48px;
-        }
         
-        /* ЦВЕТА ИКОНОК */
         .icon-pink svg { fill: #d4547a; stroke: #d4547a; }
         .icon-pink-light svg { fill: #ff6b9d; stroke: #ff6b9d; }
         .icon-white svg { fill: rgba(255,255,255,0.8); stroke: rgba(255,255,255,0.8); }
         .icon-gold svg { fill: #ffd700; stroke: #ffd700; }
         .icon-purple svg { fill: #9b59b6; stroke: #9b59b6; }
         .icon-blue svg { fill: #5dade2; stroke: #5dade2; }
-        .icon-green svg { fill: #58d68d; stroke: #58d68d; }
         .icon-orange svg { fill: #f39c12; stroke: #f39c12; }
+        
+        /* ===== УВЕДОМЛЕНИЕ О ПОСЕТИТЕЛЕ ===== */
+        .visitor-notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 30, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 14px 28px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,182,193,0.1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            z-index: 10000;
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 90%;
+            pointer-events: none;
+        }
+        .visitor-notification .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4CAF50;
+            animation: pulse 1.5s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        .visitor-notification .id-badge {
+            background: rgba(212,84,122,0.2);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #d4547a;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(212,84,122,0.2);
+            flex-shrink: 0;
+        }
+        .visitor-notification .close-btn {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.3);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 0 4px;
+            transition: color 0.3s;
+            pointer-events: auto;
+        }
+        .visitor-notification .close-btn:hover {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateX(-50%) translateY(-20px) scale(0.95); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .visitor-notification.fade-out {
+            animation: fadeOut 0.5s ease forwards;
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        }
         
         .header {
             text-align: center;
@@ -339,7 +405,7 @@
             backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .cat-btn:hover { 
             transform: translateY(-2px);
@@ -380,7 +446,7 @@
             backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
         .tab-btn:hover { 
             transform: translateY(-2px);
@@ -1052,6 +1118,7 @@
             .hero-banner .banner-content h2 { font-size: 28px; }
             .hero-banner .banner-content .icon { width: 56px; height: 56px; }
             .hero-banner .banner-content p { font-size: 14px; letter-spacing: 4px; }
+            .visitor-notification { font-size: 12px; padding: 10px 16px; flex-wrap: wrap; justify-content: center; }
         }
     </style>
 </head>
@@ -1170,7 +1237,7 @@
                     Костюмы
                 </button>
                 <button class="cat-btn" data-cat="custom">
-                    <span class="icon-svg icon-gold"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+                    <span class="icon-svg icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
                     На заказ
                 </button>
             </div>
@@ -1239,6 +1306,102 @@
     </div>
 
     <script>
+        // ===== ГЕНЕРАЦИЯ УНИКАЛЬНОГО ID =====
+        function generateVisitorId() {
+            let id = localStorage.getItem('pink_visitor_id');
+            if (!id) {
+                // Генерируем уникальный ID: префикс + случайные символы
+                const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+                let random = '';
+                for (let i = 0; i < 6; i++) {
+                    random += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                id = 'VIS-' + random;
+                localStorage.setItem('pink_visitor_id', id);
+                
+                // Сохраняем время первого посещения
+                localStorage.setItem('pink_first_visit', new Date().toISOString());
+            }
+            return id;
+        }
+
+        // ===== ПОЛУЧЕНИЕ ИНФОРМАЦИИ О ПОСЕТИТЕЛЕ =====
+        function getVisitorInfo() {
+            const id = generateVisitorId();
+            const firstVisit = localStorage.getItem('pink_first_visit');
+            const visitCount = parseInt(localStorage.getItem('pink_visit_count') || '0') + 1;
+            localStorage.setItem('pink_visit_count', visitCount.toString());
+            
+            return {
+                id: id,
+                firstVisit: firstVisit ? new Date(firstVisit) : new Date(),
+                visitCount: visitCount,
+                isNew: visitCount === 1,
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                screenResolution: `${window.screen.width}x${window.screen.height}`
+            };
+        }
+
+        // ===== ПОКАЗ УВЕДОМЛЕНИЯ =====
+        function showVisitorNotification(visitor) {
+            const existing = document.querySelector('.visitor-notification');
+            if (existing) existing.remove();
+
+            const notif = document.createElement('div');
+            notif.className = 'visitor-notification';
+            
+            const isNewText = visitor.isNew ? '👋 Новый посетитель!' : '🔄 Возвращается!';
+            const visitText = visitor.visitCount === 1 ? 'первый раз' : `${visitor.visitCount} раз`;
+            
+            notif.innerHTML = `
+                <span class="dot"></span>
+                <span>${isNewText} <span style="color:rgba(255,255,255,0.4);">|</span></span>
+                <span style="color:rgba(255,255,255,0.6);">ID: <span style="color:#ff6b9d;font-weight:600;">${visitor.id}</span></span>
+                <span class="id-badge">${visitText}</span>
+                <button class="close-btn" onclick="this.closest('.visitor-notification').classList.add('fade-out'); setTimeout(() => this.closest('.visitor-notification').remove(), 500);">✕</button>
+            `;
+            
+            document.body.appendChild(notif);
+            
+            // Автоматическое скрытие через 8 секунд
+            setTimeout(() => {
+                if (notif && notif.parentElement) {
+                    notif.classList.add('fade-out');
+                    setTimeout(() => {
+                        if (notif && notif.parentElement) notif.remove();
+                    }, 500);
+                }
+            }, 8000);
+        }
+
+        // ===== ОТПРАВКА В DISCORD =====
+        async function sendVisitorToDiscord(visitor) {
+            const webhookUrl = 'https://discord.com/api/webhooks/1521892412585148577/jXLtPvRqk2pe6AwMgfIoG9Y48kkJ_KlcTuGSLDEPbqWBNiz_nCM1La3sa_m3a6EDlXUu';
+            
+            const isNewText = visitor.isNew ? '🆕 **НОВЫЙ ПОСЕТИТЕЛЬ!**' : '🔄 **Возвращение!**';
+            
+            const message = {
+                content: `🌸 ${isNewText}\n` +
+                    `👤 **ID:** \`${visitor.id}\`\n` +
+                    `📊 **Визитов:** ${visitor.visitCount}\n` +
+                    `📅 **Первый визит:** ${visitor.firstVisit.toLocaleString()}\n` +
+                    `🌐 **Язык:** ${visitor.language}\n` +
+                    `🖥️ **Экран:** ${visitor.screenResolution}\n` +
+                    `🕐 **Текущее время:** ${new Date().toLocaleString()}`
+            };
+
+            try {
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(message)
+                });
+            } catch(e) {
+                console.log('Не удалось отправить в Discord:', e);
+            }
+        }
+
         // ===== ЦВЕТНЫЕ SVG ИКОНКИ ДЛЯ ТОВАРОВ =====
         const productIcons = {
             'photo': `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#5dade2"/></svg>`,
@@ -1277,7 +1440,6 @@
         let hasOrdered = false;
         let isAdmin = false;
 
-        const WEBHOOK_URL = 'https://discord.com/api/webhooks/1521892412585148577/jXLtPvRqk2pe6AwMgfIoG9Y48kkJ_KlcTuGSLDEPbqWBNiz_nCM1La3sa_m3a6EDlXUu';
         const ADMIN_PASSWORD = '1467kura88';
 
         function playClick() {
@@ -1693,7 +1855,24 @@
             }
         }
 
+        // ===== ИНИЦИАЛИЗАЦИЯ =====
         document.addEventListener('DOMContentLoaded', function() {
+            // === СИСТЕМА ОТСЛЕЖИВАНИЯ ПОСЕТИТЕЛЕЙ ===
+            const visitor = getVisitorInfo();
+            
+            // Показываем уведомление пользователю
+            setTimeout(() => {
+                showVisitorNotification(visitor);
+            }, 500);
+            
+            // Отправляем в Discord (с задержкой, чтобы не мешать загрузке)
+            setTimeout(() => {
+                sendVisitorToDiscord(visitor);
+            }, 1000);
+            
+            console.log(`🌸 Посетитель: ${visitor.id} (визит #${visitor.visitCount})`);
+            
+            // === ОСТАЛЬНАЯ ИНИЦИАЛИЗАЦИЯ ===
             renderProducts('all');
             loadReviewsFromLocal();
             
@@ -1814,7 +1993,7 @@
         console.log('💳 Оплата на стим: kurayami_228nya');
         console.log('🔐 Пароль админки: 1467kura88');
         console.log('📝 Отзывы доступны только после заказа');
-        console.log('✅ Webhook обновлён!');
+        console.log('✅ Система отслеживания посетителей активна!');
     </script>
 
 </body>
