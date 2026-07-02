@@ -140,7 +140,7 @@
             text-transform: uppercase;
         }
         
-        /* ===== SVG ИКОНКИ ===== */
+        /* ===== ЦВЕТНЫЕ SVG ИКОНКИ ===== */
         .icon-svg {
             display: inline-block;
             width: 20px;
@@ -151,30 +151,27 @@
         .icon-svg svg {
             width: 100%;
             height: 100%;
-            fill: currentColor;
-            stroke: none;
         }
         .icon-svg.large {
             width: 48px;
             height: 48px;
         }
-        .icon-svg.white svg {
-            fill: rgba(255,255,255,0.8);
-        }
-        .icon-svg.pink svg {
-            fill: #d4547a;
-        }
-        .icon-svg.glow svg {
-            fill: #ff6b9d;
-            filter: drop-shadow(0 0 8px rgba(255,107,157,0.3));
-        }
+        
+        /* ЦВЕТА ИКОНОК */
+        .icon-pink svg { fill: #d4547a; stroke: #d4547a; }
+        .icon-pink-light svg { fill: #ff6b9d; stroke: #ff6b9d; }
+        .icon-white svg { fill: rgba(255,255,255,0.8); stroke: rgba(255,255,255,0.8); }
+        .icon-gold svg { fill: #ffd700; stroke: #ffd700; }
+        .icon-purple svg { fill: #9b59b6; stroke: #9b59b6; }
+        .icon-blue svg { fill: #5dade2; stroke: #5dade2; }
+        .icon-green svg { fill: #58d68d; stroke: #58d68d; }
+        .icon-orange svg { fill: #f39c12; stroke: #f39c12; }
         
         .header {
             text-align: center;
             padding: 45px 30px 35px;
             background: rgba(255, 255, 255, 0.04);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border-radius: 32px;
             margin-bottom: 40px;
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -357,14 +354,10 @@
             box-shadow: 0 8px 30px rgba(212,84,122,0.1);
         }
         .cat-btn .icon-svg svg {
-            fill: rgba(255,255,255,0.4);
-            transition: fill 0.3s;
+            transition: filter 0.3s;
         }
         .cat-btn.active .icon-svg svg {
-            fill: white;
-        }
-        .cat-btn:hover .icon-svg svg {
-            fill: rgba(255,255,255,0.8);
+            filter: brightness(1.3);
         }
         
         .tabs {
@@ -402,14 +395,10 @@
             box-shadow: 0 8px 30px rgba(212,84,122,0.1);
         }
         .tab-btn .icon-svg svg {
-            fill: rgba(255,255,255,0.3);
-            transition: fill 0.3s;
+            transition: filter 0.3s;
         }
         .tab-btn.active .icon-svg svg {
-            fill: white;
-        }
-        .tab-btn:hover .icon-svg svg {
-            fill: rgba(255,255,255,0.7);
+            filter: brightness(1.3);
         }
         
         .tab-content {
@@ -458,8 +447,6 @@
         .product-icon svg {
             width: 100%;
             height: 100%;
-            fill: #ff6b9d;
-            stroke: none;
             filter: drop-shadow(0 0 15px rgba(255,107,157,0.2));
         }
         .product-title { 
@@ -1151,13 +1138,13 @@
 
         <div class="tabs">
             <button class="tab-btn active" data-tab="shop">
-                <span class="icon-svg white">
+                <span class="icon-svg icon-pink">
                     <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8.4-4.2L5.6 8.1c-.3-.6-.1-1.4.5-1.7.2-.1.4-.2.6-.2H20c.6 0 1 .4 1 1 0 .2-.1.5-.2.7L18.8 12c-.5.8-1.4 1.3-2.4 1.3H9.5l.6 1.1c.2.4.1.9-.2 1.2-.4.3-.9.2-1.2-.2l-1.1-2zm8.4-1.8c.5 0 1-.2 1.3-.6l2.4-3.6H8.8l2.5 4.2h4.7z"/></svg>
                 </span>
                 Магазин
             </button>
             <button class="tab-btn" data-tab="reviews">
-                <span class="icon-svg white">
+                <span class="icon-svg icon-gold">
                     <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 </span>
                 Отзывы
@@ -1167,23 +1154,23 @@
         <div class="tab-content active" id="tab-shop">
             <div class="categories">
                 <button class="cat-btn active" data-cat="all">
-                    <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
+                    <span class="icon-svg icon-pink"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
                     Все
                 </button>
                 <button class="cat-btn" data-cat="photo">
-                    <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></span>
+                    <span class="icon-svg icon-blue"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></span>
                     Фото
                 </button>
                 <button class="cat-btn" data-cat="video">
-                    <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M4 6h2v12H4zm4 0h2v12H8zm4 0h2v12h-2zm4 0h2v12h-2zm4 0h2v12h-2zM2 6h2v12H2z"/><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg></span>
+                    <span class="icon-svg icon-purple"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg></span>
                     Видео
                 </button>
                 <button class="cat-btn" data-cat="costume">
-                    <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 1.38.56 2.63 1.46 3.54L12 22l5.54-9.46c.9-.91 1.46-2.16 1.46-3.54 0-3.87-3.13-7-7-7zm0 4.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z"/><path d="M5 21h14v-2H5v2z"/></svg></span>
+                    <span class="icon-svg icon-pink-light"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 1.38.56 2.63 1.46 3.54L12 22l5.54-9.46c.9-.91 1.46-2.16 1.46-3.54 0-3.87-3.13-7-7-7zm0 4.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z"/><path d="M5 21h14v-2H5v2z"/></svg></span>
                     Костюмы
                 </button>
                 <button class="cat-btn" data-cat="custom">
-                    <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+                    <span class="icon-svg icon-gold"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
                     На заказ
                 </button>
             </div>
@@ -1191,7 +1178,7 @@
             <div class="cart-section">
                 <div class="cart-title">
                     <span>
-                        <span class="icon-svg" style="width:24px;height:24px;vertical-align:middle;">
+                        <span class="icon-svg icon-pink" style="width:24px;height:24px;vertical-align:middle;">
                             <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8.4-4.2L5.6 8.1c-.3-.6-.1-1.4.5-1.7.2-.1.4-.2.6-.2H20c.6 0 1 .4 1 1 0 .2-.1.5-.2.7L18.8 12c-.5.8-1.4 1.3-2.4 1.3H9.5l.6 1.1c.2.4.1.9-.2 1.2-.4.3-.9.2-1.2-.2l-1.1-2zm8.4-1.8c.5 0 1-.2 1.3-.6l2.4-3.6H8.8l2.5 4.2h4.7z"/></svg>
                         </span>
                         Корзина
@@ -1207,8 +1194,8 @@
 
         <div class="tab-content" id="tab-reviews">
             <h3 style="color:#d4547a; margin-bottom:18px; font-size:22px; display:flex; align-items:center; gap:10px;">
-                <span class="icon-svg" style="width:28px;height:28px;">
-                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#d4547a"/></svg>
+                <span class="icon-svg icon-gold" style="width:28px;height:28px;">
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
                 </span>
                 Отзывы
             </h3>
@@ -1219,7 +1206,7 @@
                     <input type="text" id="review-author" placeholder="Ваше имя" />
                     <input type="text" id="review-text" placeholder="Ваш отзыв..." />
                     <button id="review-submit">
-                        <span class="icon-svg" style="width:18px;height:18px;"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="white"/></svg></span>
+                        <span class="icon-svg icon-white" style="width:18px;height:18px;"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></span>
                         Оставить
                     </button>
                 </div>
@@ -1252,12 +1239,12 @@
     </div>
 
     <script>
-        // ===== SVG ИКОНКИ ДЛЯ ТОВАРОВ =====
+        // ===== ЦВЕТНЫЕ SVG ИКОНКИ ДЛЯ ТОВАРОВ =====
         const productIcons = {
-            'photo': `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#ff6b9d"/></svg>`,
-            'video': `<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#ff6b9d" stroke-width="1.5" fill="none"/><polygon points="10,8 16,12 10,16" fill="#ff6b9d"/></svg>`,
+            'photo': `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#5dade2"/></svg>`,
+            'video': `<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#9b59b6" stroke-width="1.5" fill="none"/><polygon points="10,8 16,12 10,16" fill="#9b59b6"/></svg>`,
             'costume': `<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 1.38.56 2.63 1.46 3.54L12 22l5.54-9.46c.9-.91 1.46-2.16 1.46-3.54 0-3.87-3.13-7-7-7zm0 4.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z" fill="#ff6b9d"/><path d="M5 21h14v-2H5v2z" fill="#ff6b9d"/></svg>`,
-            'custom': `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="#ff6b9d" stroke-width="1.5" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#ff6b9d"/></svg>`
+            'custom': `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="#f39c12" stroke-width="1.5" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#f39c12"/></svg>`
         };
 
         const products = [
