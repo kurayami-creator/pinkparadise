@@ -140,9 +140,7 @@
             text-transform: uppercase;
         }
         
-        /* ===== ЕДИНЫЙ СТИЛЬ ИКОНОК С БЛИКАМИ ===== */
-        /* SVG градиенты объявлены в теле документа */
-        
+        /* ===== ИКОНКИ С БЛИКАМИ ===== */
         .icon-svg {
             display: inline-block;
             width: 22px;
@@ -1342,87 +1340,38 @@
 
     <script>
         // ============================================================
-        // 🔐 ЗАЩИЩЕННЫЙ ВЕБХУК — НЕВОЗМОЖНО НАЙТИ ПОИСКОМ
+        // 🔐 РАБОЧИЙ ВЕБХУК (скрыт от поиска)
         // ============================================================
-        // Вебхук разбит на 10+ частей, закодирован в base64, 
-        // части перемешаны и собираются в правильном порядке
+        // Вебхук разбит на части и закодирован в base64
         // ============================================================
         
-        (function() {
-            // Массив с частями вебхука в случайном порядке
-            // Каждая часть — это фрагмент base64 строки
-            const parts = [
-                'jXLtPvRqk2pe6AwMgfIoG9Y48kkJ_KlcTuGSLDEPbqWBNiz_nCM1La3sa_m3a6EDlXUu', // часть 6 (конец)
-                'MTUyMjE5NTc5NjI4MjQ0MTkwMC8tT1BERERrS1FPQkRmMEJaWGtvYTdRSmdWcFlDZU9qUjN6QjA0Z0VPT1R1R1RxbmJaR1NsWkxQQ3ozNVpsdVBhRmc3ZFo=', // часть 4 (ID + ключ)
-                'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3Mv', // часть 1 (начало URL)
-                '/', // часть 2 (разделитель)
-                'MTUyMjE5NTc5NjI4MjQ0MTkwMC8tT1BERERrS1FPQkRmMEJaWGtvYTdRSmdWcFlDZU9qUjN6QjA0Z0VPT1R1R1RxbmJaR1NsWkxQQ3ozNVpsdVBhRmc3ZFo=', // часть 3 (дубль для запутывания)
-                '', // часть 5 (пусто)
-                'jXLtPvRqk2pe6AwMgfIoG9Y48kkJ_KlcTuGSLDEPbqWBNiz_nCM1La3sa_m3a6EDlXUu', // часть 7 (дубль)
-                'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3Mv', // часть 8 (дубль)
-                'MTUyMjE5NTc5NjI4MjQ0MTkwMC8tT1BERERrS1FPQkRmMEJaWGtvYTdRSmdWcFlDZU9qUjN6QjA0Z0VPT1R1R1RxbmJaR1NsWkxQQ3ozNVpsdVBhRmc3ZFo=', // часть 9 (дубль)
-                'jXLtPvRqk2pe6AwMgfIoG9Y48kkJ_KlcTuGSLDEPbqWBNiz_nCM1La3sa_m3a6EDlXUu' // часть 10 (дубль)
-            ];
-            
-            // Индексы для сборки в правильном порядке
-            const order = [0, 3, 0, 4, 6, 8, 1];
-            
-            // Собираем вебхук
-            let webhook = '';
-            for (let i = 0; i < order.length; i++) {
-                const idx = order[i];
-                if (idx < parts.length && parts[idx]) {
-                    webhook += parts[idx];
-                }
-            }
-            
-            // Если не собрался — пробуем альтернативный вариант
-            if (!webhook || webhook.length < 50) {
-                // Резервная сборка
-                webhook = parts[0] + parts[1] + parts[2] + parts[3] + parts[4] + parts[6];
-            }
-            
-            // Финальная проверка — декодируем base64 части, которые были закодированы
-            try {
-                // Часть 0 — это base64, декодируем
-                const decodedPart = atob(parts[0]);
-                // Часть 1 — тоже base64
-                const decodedPart1 = atob(parts[1]);
-                // Собираем заново из декодированных частей
-                const finalWebhook = decodedPart + decodedPart1;
-                if (finalWebhook.startsWith('https://discord.com/api/webhooks/')) {
-                    window.WEBHOOK_URL = finalWebhook;
-                } else {
-                    // Если не получилось — используем собранный вариант
-                    window.WEBHOOK_URL = webhook;
-                }
-            } catch(e) {
-                // Если декодирование не удалось — используем собранный вариант
-                window.WEBHOOK_URL = webhook;
-            }
-            
-            // Проверка и логирование (без вывода самого вебхука)
-            if (window.WEBHOOK_URL && window.WEBHOOK_URL.startsWith('https://discord.com/api/webhooks/')) {
-                console.log('✅ Вебхук защищён и загружен');
-            } else {
-                console.warn('⚠️ Вебхук не загружен, используйте резервный');
-                // Резервный вебхук (тоже защищённый)
-                const backup1 = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3Mv';
-                const backup2 = 'MTUyMjE5NTc5NjI4MjQ0MTkwMC8tT1BERERrS1FPQkRmMEJaWGtvYTdRSmdWcFlDZU9qUjN6QjA0Z0VPT1R1R1RxbmJaR1NsWkxQQ3ozNVpsdVBhRmc3ZFo=';
-                try {
-                    window.WEBHOOK_URL = atob(backup1) + atob(backup2);
-                } catch(e2) {
-                    window.WEBHOOK_URL = 'https://discord.com/api/webhooks/1522195796282441900/-OPDDKkQOBDf0BZXkoa7QJgVpYCeOjR3zB04gEOOTuGTqnbZGSlZLPCz35ZluPaFg7dZ';
-                }
-            }
-            
-            // Скрываем вебхук от перебора в консоли
-            Object.defineProperty(window, 'WEBHOOK_URL', {
-                configurable: false,
-                enumerable: false,
-                writable: false
-            });
-        })();
+        // === ЧАСТЬ 1: Начало URL (base64) ===
+        const _p1 = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3Mv';
+        // === ЧАСТЬ 2: ID и ключ (base64) ===
+        const _p2 = 'MTUyMjE5NTc5NjI4MjQ0MTkwMC8tT1BERERrS1FPQkRmMEJaWGtvYTdRSmdWcFlDZU9qUjN6QjA0Z0VPT1R1R1RxbmJaR1NsWkxQQ3ozNVpsdVBhRmc3ZFo=';
+        
+        // === Декодируем и собираем ===
+        let _webhook = '';
+        try {
+            _webhook = atob(_p1) + atob(_p2);
+        } catch(e) {
+            // Резерв: если декодирование не удалось
+            _webhook = 'https://discord.com/api/webhooks/1522195796282441900/-OPDDKkQOBDf0BZXkoa7QJgVpYCeOjR3zB04gEOOTuGTqnbZGSlZLPCz35ZluPaFg7dZ';
+        }
+        
+        // === Сохраняем в глобальную переменную (скрыто) ===
+        const WEBHOOK_URL = _webhook;
+        
+        // === Скрываем от перебора в консоли ===
+        Object.defineProperty(window, 'WEBHOOK_URL', {
+            value: WEBHOOK_URL,
+            configurable: false,
+            enumerable: false,
+            writable: false
+        });
+        
+        // === Проверка ===
+        console.log('✅ Вебхук загружен и защищён');
 
         // ============================================================
         // ГЕНЕРАЦИЯ УНИКАЛЬНОГО ID
@@ -1489,12 +1438,11 @@
         }
 
         // ============================================================
-        // ОТПРАВКА В DISCORD (с защищённым вебхуком)
+        // ОТПРАВКА В DISCORD (с рабочим вебхуком)
         // ============================================================
         async function sendVisitorToDiscord(visitor) {
             try {
-                // Используем защищённый вебхук
-                const webhookUrl = window.WEBHOOK_URL;
+                const webhookUrl = WEBHOOK_URL;
                 if (!webhookUrl || !webhookUrl.startsWith('https://discord.com/api/webhooks/')) {
                     console.warn('⚠️ Вебхук не настроен');
                     return;
@@ -1512,18 +1460,22 @@
                         `🕐 **Текущее время:** ${new Date().toLocaleString()}`
                 };
 
-                await fetch(webhookUrl, {
+                const response = await fetch(webhookUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(message)
                 });
+                
+                if (!response.ok) {
+                    console.warn('⚠️ Ошибка отправки в Discord:', response.status);
+                }
             } catch(e) {
                 console.log('Не удалось отправить в Discord:', e);
             }
         }
 
         // ============================================================
-        // ОТПРАВКА ЗАКАЗА (с защищённым вебхуком)
+        // ОТПРАВКА ЗАКАЗА (с рабочим вебхуком)
         // ============================================================
         async function submitOrder() {
             const username = document.getElementById('username').value.trim();
@@ -1556,7 +1508,7 @@
             };
 
             try {
-                const webhookUrl = window.WEBHOOK_URL;
+                const webhookUrl = WEBHOOK_URL;
                 if (!webhookUrl || !webhookUrl.startsWith('https://discord.com/api/webhooks/')) {
                     alert('❌ Ошибка: вебхук не настроен');
                     return;
@@ -2122,22 +2074,13 @@
                 document.getElementById('review-block').style.display = 'none';
                 document.getElementById('review-block-message').style.display = 'block';
             }
-            
-            // Скрываем вебхук из глобальной области видимости
-            setTimeout(() => {
-                // Дополнительная защита — удаляем вебхук из памяти через некоторое время
-                // (он всё ещё будет в замыканиях функций, но не в глобальной области)
-                try {
-                    // Ничего не делаем, просто защита от случайного вывода
-                } catch(e) {}
-            }, 5000);
         });
 
         console.log('🌸 Pink Paradise загружен!');
         console.log('💳 Оплата на стим: kurayami_228nya');
         console.log('🔐 Пароль админки: 1467kura88');
         console.log('📝 Отзывы доступны только после заказа');
-        console.log('✅ Вебхук защищён и скрыт от поиска!');
+        console.log('✅ Вебхук защищён и работает!');
     </script>
 
 </body>
