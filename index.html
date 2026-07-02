@@ -41,25 +41,6 @@
             z-index: 0;
         }
         
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, rgba(255,182,193,0.1), transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(255,182,193,0.08), transparent),
-                radial-gradient(2px 2px at 50px 160px, rgba(255,182,193,0.1), transparent),
-                radial-gradient(2px 2px at 90px 40px, rgba(255,182,193,0.08), transparent),
-                radial-gradient(2px 2px at 130px 80px, rgba(255,182,193,0.1), transparent),
-                radial-gradient(2px 2px at 160px 30px, rgba(255,182,193,0.08), transparent);
-            background-size: 200px 200px;
-            z-index: 0;
-            pointer-events: none;
-        }
-        
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -111,10 +92,19 @@
         }
         
         .hero-banner .banner-content .icon {
-            font-size: 72px;
-            display: block;
+            display: inline-block;
+            width: 80px;
+            height: 80px;
             margin-bottom: 12px;
             animation: floatIcon 3s ease-in-out infinite;
+        }
+        
+        .hero-banner .banner-content .icon svg {
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: #ff6b9d;
+            stroke-width: 1.5;
         }
         
         @keyframes floatIcon {
@@ -150,17 +140,33 @@
             text-transform: uppercase;
         }
         
-        .hero-banner .banner-content .sparkles {
-            margin-top: 16px;
-            font-size: 24px;
-            letter-spacing: 12px;
-            opacity: 0.4;
-            animation: sparklePulse 2s ease-in-out infinite;
+        /* ===== SVG ИКОНКИ ===== */
+        .icon-svg {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            flex-shrink: 0;
         }
-        
-        @keyframes sparklePulse {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.05); }
+        .icon-svg svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+            stroke: none;
+        }
+        .icon-svg.large {
+            width: 48px;
+            height: 48px;
+        }
+        .icon-svg.white svg {
+            fill: rgba(255,255,255,0.8);
+        }
+        .icon-svg.pink svg {
+            fill: #d4547a;
+        }
+        .icon-svg.glow svg {
+            fill: #ff6b9d;
+            filter: drop-shadow(0 0 8px rgba(255,107,157,0.3));
         }
         
         .header {
@@ -174,22 +180,6 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
             position: relative;
             overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(212, 84, 122, 0.05), transparent 70%);
-            animation: shimmer 10s ease-in-out infinite;
-        }
-        
-        @keyframes shimmer {
-            0%, 100% { transform: translateX(-10%) rotate(0deg); }
-            50% { transform: translateX(10%) rotate(5deg); }
         }
         
         .header h1 { 
@@ -237,7 +227,6 @@
             z-index: 999;
             background: rgba(255,255,255,0.06);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 50%;
             width: 48px;
@@ -264,7 +253,6 @@
             z-index: 999;
             background: rgba(20, 20, 30, 0.95);
             backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
             border-radius: 24px;
             padding: 28px;
             box-shadow: 0 30px 80px rgba(0,0,0,0.5);
@@ -368,6 +356,16 @@
             border-color: rgba(212,84,122,0.3);
             box-shadow: 0 8px 30px rgba(212,84,122,0.1);
         }
+        .cat-btn .icon-svg svg {
+            fill: rgba(255,255,255,0.4);
+            transition: fill 0.3s;
+        }
+        .cat-btn.active .icon-svg svg {
+            fill: white;
+        }
+        .cat-btn:hover .icon-svg svg {
+            fill: rgba(255,255,255,0.8);
+        }
         
         .tabs {
             display: flex;
@@ -403,12 +401,21 @@
             border-color: rgba(212,84,122,0.3);
             box-shadow: 0 8px 30px rgba(212,84,122,0.1);
         }
+        .tab-btn .icon-svg svg {
+            fill: rgba(255,255,255,0.3);
+            transition: fill 0.3s;
+        }
+        .tab-btn.active .icon-svg svg {
+            fill: white;
+        }
+        .tab-btn:hover .icon-svg svg {
+            fill: rgba(255,255,255,0.7);
+        }
         
         .tab-content {
             display: none;
             background: rgba(255,255,255,0.03);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             border-radius: 28px;
             padding: 30px;
             margin-bottom: 30px;
@@ -429,7 +436,6 @@
         .product-card {
             background: rgba(255,255,255,0.04);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             border-radius: 24px;
             padding: 24px 20px 22px;
             text-align: center;
@@ -444,9 +450,17 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
         .product-icon {
-            font-size: 48px;
-            display: block;
+            display: inline-block;
+            width: 56px;
+            height: 56px;
             margin-bottom: 12px;
+        }
+        .product-icon svg {
+            width: 100%;
+            height: 100%;
+            fill: #ff6b9d;
+            stroke: none;
+            filter: drop-shadow(0 0 15px rgba(255,107,157,0.2));
         }
         .product-title { 
             font-size: 17px; 
@@ -485,7 +499,6 @@
         .cart-section {
             background: rgba(255,255,255,0.04);
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             border-radius: 28px;
             padding: 28px;
             margin-top: 30px;
@@ -790,18 +803,6 @@
             100% { opacity: 1; transform: scale(1.2); }
         }
         
-        .branch {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100px;
-            z-index: 0;
-            pointer-events: none;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" opacity="0.15"><path d="M0 50 Q300 10 600 50 T1200 50" stroke="%23d4547a" stroke-width="2" fill="none"/><circle cx="100" cy="35" r="12" fill="%23ff6b9d" opacity="0.3"/><circle cx="300" cy="45" r="16" fill="%23ff6b9d" opacity="0.3"/><circle cx="500" cy="30" r="14" fill="%23ff6b9d" opacity="0.3"/><circle cx="700" cy="42" r="18" fill="%23ff6b9d" opacity="0.3"/><circle cx="900" cy="32" r="13" fill="%23ff6b9d" opacity="0.3"/><circle cx="1100" cy="45" r="16" fill="%23ff6b9d" opacity="0.3"/></svg>') no-repeat top center;
-            background-size: cover;
-        }
-        
         .review-item {
             padding: 14px 10px;
             border-bottom: 1px solid rgba(255,255,255,0.04);
@@ -1062,7 +1063,7 @@
             .cart-title { font-size: 18px; }
             .hero-banner { height: 250px; padding: 20px; }
             .hero-banner .banner-content h2 { font-size: 28px; }
-            .hero-banner .banner-content .icon { font-size: 48px; }
+            .hero-banner .banner-content .icon { width: 56px; height: 56px; }
             .hero-banner .banner-content p { font-size: 14px; letter-spacing: 4px; }
         }
     </style>
@@ -1120,37 +1121,81 @@
     </div>
 
     <div id="effects-container"></div>
-    <div class="branch" id="branch"></div>
 
     <div class="container">
 
         <!-- ГРАДИЕНТНЫЙ БАННЕР -->
         <div class="hero-banner">
             <div class="banner-content">
-                <span class="icon">🌸</span>
+                <span class="icon">
+                    <svg viewBox="0 0 100 100">
+                        <defs>
+                            <linearGradient id="flowerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#d4547a;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="50" cy="50" r="45" fill="url(#flowerGrad)" opacity="0.15"/>
+                        <path d="M50 15 C50 15, 35 25, 35 40 C35 55, 50 60, 50 60 C50 60, 65 55, 65 40 C65 25, 50 15, 50 15Z" fill="url(#flowerGrad)" opacity="0.9"/>
+                        <path d="M50 85 C50 85, 35 75, 35 60 C35 45, 50 40, 50 40 C50 40, 65 45, 65 60 C65 75, 50 85, 50 85Z" fill="url(#flowerGrad)" opacity="0.7"/>
+                        <path d="M15 50 C15 50, 25 35, 40 35 C55 35, 60 50, 60 50 C60 50, 55 65, 40 65 C25 65, 15 50, 15 50Z" fill="url(#flowerGrad)" opacity="0.8"/>
+                        <path d="M85 50 C85 50, 75 35, 60 35 C45 35, 40 50, 40 50 C40 50, 45 65, 60 65 C75 65, 85 50, 85 50Z" fill="url(#flowerGrad)" opacity="0.8"/>
+                        <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.6"/>
+                        <circle cx="50" cy="50" r="6" fill="#ff6b9d"/>
+                    </svg>
+                </span>
                 <h2>Pink Paradise</h2>
                 <p>Фото · Видео · Костюмы · На заказ</p>
-                <div class="sparkles">✦ ✧ ✦ ✧ ✦</div>
             </div>
         </div>
 
         <div class="tabs">
-            <button class="tab-btn active" data-tab="shop">🛍️ Магазин</button>
-            <button class="tab-btn" data-tab="reviews">⭐ Отзывы</button>
+            <button class="tab-btn active" data-tab="shop">
+                <span class="icon-svg white">
+                    <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8.4-4.2L5.6 8.1c-.3-.6-.1-1.4.5-1.7.2-.1.4-.2.6-.2H20c.6 0 1 .4 1 1 0 .2-.1.5-.2.7L18.8 12c-.5.8-1.4 1.3-2.4 1.3H9.5l.6 1.1c.2.4.1.9-.2 1.2-.4.3-.9.2-1.2-.2l-1.1-2zm8.4-1.8c.5 0 1-.2 1.3-.6l2.4-3.6H8.8l2.5 4.2h4.7z"/></svg>
+                </span>
+                Магазин
+            </button>
+            <button class="tab-btn" data-tab="reviews">
+                <span class="icon-svg white">
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                </span>
+                Отзывы
+            </button>
         </div>
 
         <div class="tab-content active" id="tab-shop">
             <div class="categories">
-                <button class="cat-btn active" data-cat="all">🏠 Все</button>
-                <button class="cat-btn" data-cat="photo">📸 Фото</button>
-                <button class="cat-btn" data-cat="video">🎥 Видео</button>
-                <button class="cat-btn" data-cat="costume">👗 Костюмы</button>
-                <button class="cat-btn" data-cat="custom">✨ На заказ</button>
+                <button class="cat-btn active" data-cat="all">
+                    <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
+                    Все
+                </button>
+                <button class="cat-btn" data-cat="photo">
+                    <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></span>
+                    Фото
+                </button>
+                <button class="cat-btn" data-cat="video">
+                    <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M4 6h2v12H4zm4 0h2v12H8zm4 0h2v12h-2zm4 0h2v12h-2zm4 0h2v12h-2zM2 6h2v12H2z"/><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg></span>
+                    Видео
+                </button>
+                <button class="cat-btn" data-cat="costume">
+                    <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 1.38.56 2.63 1.46 3.54L12 22l5.54-9.46c.9-.91 1.46-2.16 1.46-3.54 0-3.87-3.13-7-7-7zm0 4.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z"/><path d="M5 21h14v-2H5v2z"/></svg></span>
+                    Костюмы
+                </button>
+                <button class="cat-btn" data-cat="custom">
+                    <span class="icon-svg"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+                    На заказ
+                </button>
             </div>
             <div class="products" id="products"></div>
             <div class="cart-section">
                 <div class="cart-title">
-                    <span>🛒 Корзина</span>
+                    <span>
+                        <span class="icon-svg" style="width:24px;height:24px;vertical-align:middle;">
+                            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8.4-4.2L5.6 8.1c-.3-.6-.1-1.4.5-1.7.2-.1.4-.2.6-.2H20c.6 0 1 .4 1 1 0 .2-.1.5-.2.7L18.8 12c-.5.8-1.4 1.3-2.4 1.3H9.5l.6 1.1c.2.4.1.9-.2 1.2-.4.3-.9.2-1.2-.2l-1.1-2zm8.4-1.8c.5 0 1-.2 1.3-.6l2.4-3.6H8.8l2.5 4.2h4.7z"/></svg>
+                        </span>
+                        Корзина
+                    </span>
                     <button class="select-btn" id="clear-cart" style="width: auto; padding: 8px 24px; font-size: 13px;">Очистить</button>
                 </div>
                 <div id="cart-items"></div>
@@ -1161,14 +1206,22 @@
         </div>
 
         <div class="tab-content" id="tab-reviews">
-            <h3 style="color:#d4547a; margin-bottom:18px; font-size:22px;">⭐ Отзывы</h3>
+            <h3 style="color:#d4547a; margin-bottom:18px; font-size:22px; display:flex; align-items:center; gap:10px;">
+                <span class="icon-svg" style="width:28px;height:28px;">
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="#d4547a"/></svg>
+                </span>
+                Отзывы
+            </h3>
             <div id="reviews-list"></div>
             
             <div id="review-block" style="display:none;">
                 <div class="review-form" id="review-form">
                     <input type="text" id="review-author" placeholder="Ваше имя" />
                     <input type="text" id="review-text" placeholder="Ваш отзыв..." />
-                    <button id="review-submit">✍️ Оставить</button>
+                    <button id="review-submit">
+                        <span class="icon-svg" style="width:18px;height:18px;"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="white"/></svg></span>
+                        Оставить
+                    </button>
                 </div>
             </div>
             <div id="review-block-message" style="text-align:center; padding:20px; color:rgba(255,255,255,0.2); font-size:14px;">
@@ -1199,12 +1252,12 @@
     </div>
 
     <script>
-        // ===== ТОВАРЫ =====
+        // ===== SVG ИКОНКИ ДЛЯ ТОВАРОВ =====
         const productIcons = {
-            'photo': '📸',
-            'video': '🎥',
-            'costume': '👗',
-            'custom': '✨'
+            'photo': `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#ff6b9d"/></svg>`,
+            'video': `<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#ff6b9d" stroke-width="1.5" fill="none"/><polygon points="10,8 16,12 10,16" fill="#ff6b9d"/></svg>`,
+            'costume': `<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 1.38.56 2.63 1.46 3.54L12 22l5.54-9.46c.9-.91 1.46-2.16 1.46-3.54 0-3.87-3.13-7-7-7zm0 4.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z" fill="#ff6b9d"/><path d="M5 21h14v-2H5v2z" fill="#ff6b9d"/></svg>`,
+            'custom': `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="#ff6b9d" stroke-width="1.5" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#ff6b9d"/></svg>`
         };
 
         const products = [
@@ -1240,7 +1293,6 @@
         const WEBHOOK_URL = 'https://discord.com/api/webhooks/1521892412585148577/jXLtPvRqk2pe6AwMgfIoG9Y48kkJ_KlcTuGSLDEPbqWBNiz_nCM1La3sa_m3a6EDlXUu';
         const ADMIN_PASSWORD = '1467kura88';
 
-        // ===== ЗВУКИ =====
         function playClick() {
             try {
                 const audio = new Audio('data:audio/wav;base64,UklGRlwAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YVoAAACAgICAf39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f38=');
@@ -1257,7 +1309,6 @@
             } catch(e) {}
         }
 
-        // ===== ПРОМОКОД =====
         function updateDiscountInfo() {
             const info = document.getElementById('discount-info');
             if (discount > 0) {
@@ -1279,7 +1330,6 @@
             renderCart();
         });
 
-        // ===== ОТРИСОВКА ТОВАРОВ =====
         function renderProducts(category = 'all') {
             currentCategory = category;
             const filtered = products.filter(p => category === 'all' || p.category === category);
@@ -1289,7 +1339,7 @@
                 return;
             }
             container.innerHTML = filtered.map(p => {
-                const icon = productIcons[p.category] || '🌸';
+                const icon = productIcons[p.category] || productIcons['custom'];
                 return `
                 <div class="product-card">
                     <span class="product-icon">${icon}</span>
@@ -1301,7 +1351,6 @@
             `}).join('');
         }
 
-        // ===== КОРЗИНА =====
         window.addToCart = function(productId) {
             playClick();
             const product = products.find(p => p.id === productId);
@@ -1380,7 +1429,6 @@
             }
         }
 
-        // ===== ТЕМЫ =====
         function setTheme(theme) {
             currentTheme = theme;
             const garlandTop = document.getElementById('garlandTop');
@@ -1412,7 +1460,6 @@
             }
         }
 
-        // ===== ЧАСТИЦЫ =====
         function createSakura() {
             if (currentTheme !== 'spring') return;
             const container = document.getElementById('effects-container');
@@ -1584,7 +1631,6 @@
             }
         }
 
-        // ===== МОДАЛКА ЗАКАЗА =====
         function openOrderModal() {
             if (cart.length === 0) {
                 alert('🛒 Корзина пуста! Добавьте товары.');
@@ -1604,7 +1650,6 @@
             document.getElementById('order-modal').classList.remove('active');
         }
 
-        // ===== ОТПРАВКА ЗАКАЗА =====
         async function submitOrder() {
             const username = document.getElementById('username').value.trim();
             const details = document.getElementById('order-details').value.trim();
@@ -1661,7 +1706,6 @@
             }
         }
 
-        // ===== ИНИЦИАЛИЗАЦИЯ =====
         document.addEventListener('DOMContentLoaded', function() {
             renderProducts('all');
             loadReviewsFromLocal();
@@ -1675,7 +1719,6 @@
                 }
             } catch(e) {}
 
-            // Настройки
             const settingsToggle = document.getElementById('settingsToggle');
             const settingsPanel = document.getElementById('settingsPanel');
             
@@ -1700,7 +1743,6 @@
                 volumeDisplay.textContent = Math.round(volume * 100) + '%';
             });
 
-            // Категории
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
@@ -1710,7 +1752,6 @@
                 });
             });
 
-            // Табы
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -1721,11 +1762,8 @@
                 });
             });
 
-            // Корзина
             document.getElementById('clear-cart').addEventListener('click', window.clearCart);
             document.getElementById('order-btn').addEventListener('click', openOrderModal);
-
-            // Модалка заказа
             document.getElementById('cancel-order').addEventListener('click', closeOrderModal);
             document.getElementById('submit-order').addEventListener('click', submitOrder);
             
@@ -1733,7 +1771,6 @@
                 if (e.target === this) closeOrderModal();
             });
 
-            // Отзывы
             document.getElementById('review-submit').addEventListener('click', function() {
                 const author = document.getElementById('review-author').value.trim() || 'Аноним';
                 const text = document.getElementById('review-text').value.trim();
@@ -1748,7 +1785,6 @@
                 }
             });
 
-            // Админ-панель
             document.getElementById('adminTrigger').addEventListener('click', function() {
                 playClick();
                 if (isAdmin) {
