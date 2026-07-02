@@ -70,20 +70,23 @@
         
         .hero-banner {
             width: 100%;
-            height: 400px;
+            height: 420px;
             border-radius: 32px;
             overflow: hidden;
             margin-bottom: 40px;
             position: relative;
             box-shadow: 0 20px 60px rgba(212, 84, 122, 0.2);
             border: 1px solid rgba(255, 182, 193, 0.1);
+            background: #1a1a2e;
         }
         .hero-banner img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             object-position: center;
             transition: transform 0.8s ease;
+            display: block;
+            background: #1a1a2e;
         }
         .hero-banner:hover img {
             transform: scale(1.03);
@@ -94,7 +97,8 @@
             left: 0;
             right: 0;
             padding: 40px 50px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            pointer-events: none;
         }
         .hero-banner .overlay h2 {
             font-family: 'Playfair Display', serif;
@@ -305,30 +309,17 @@
             align-items: center;
             gap: 8px;
         }
-        .cat-btn img {
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-            filter: brightness(0.5);
-            transition: filter 0.3s;
-        }
-        .cat-btn.active { 
-            background: linear-gradient(135deg, rgba(212,84,122,0.2), rgba(184,67,102,0.2));
-            color: white; 
-            border-color: rgba(212,84,122,0.3);
-            box-shadow: 0 8px 30px rgba(212,84,122,0.1);
-        }
-        .cat-btn.active img {
-            filter: brightness(1);
-        }
         .cat-btn:hover { 
             transform: translateY(-2px);
             background: rgba(255,255,255,0.08);
             color: white;
             border-color: rgba(255,255,255,0.1);
         }
-        .cat-btn:hover img {
-            filter: brightness(0.8);
+        .cat-btn.active { 
+            background: linear-gradient(135deg, rgba(212,84,122,0.2), rgba(184,67,102,0.2));
+            color: white; 
+            border-color: rgba(212,84,122,0.3);
+            box-shadow: 0 8px 30px rgba(212,84,122,0.1);
         }
         
         .tabs {
@@ -353,27 +344,17 @@
             align-items: center;
             gap: 8px;
         }
-        .tab-btn img {
-            width: 20px;
-            height: 20px;
-            object-fit: contain;
-            filter: brightness(0.4);
-            transition: filter 0.3s;
+        .tab-btn:hover { 
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.7);
+            border-color: rgba(255,255,255,0.1);
         }
         .tab-btn.active { 
             background: linear-gradient(135deg, rgba(212,84,122,0.2), rgba(184,67,102,0.2));
             color: white; 
             border-color: rgba(212,84,122,0.3);
             box-shadow: 0 8px 30px rgba(212,84,122,0.1);
-        }
-        .tab-btn.active img {
-            filter: brightness(1);
-        }
-        .tab-btn:hover { 
-            transform: translateY(-2px);
-            background: rgba(255,255,255,0.08);
-            color: rgba(255,255,255,0.7);
-            border-color: rgba(255,255,255,0.1);
         }
         
         .tab-content {
@@ -416,12 +397,9 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
         .product-icon {
-            width: 56px;
-            height: 56px;
-            margin: 0 auto 14px;
+            font-size: 48px;
             display: block;
-            object-fit: contain;
-            filter: brightness(0.9);
+            margin-bottom: 12px;
         }
         .product-title { 
             font-size: 17px; 
@@ -468,13 +446,12 @@
             position: relative;
         }
         
-        /* ===== ЁЛКА В КОРЗИНЕ ===== */
         .cart-tree {
             display: none;
             text-align: center;
-            font-size: 80px;
+            font-size: 70px;
             line-height: 1;
-            margin: 10px 0 0;
+            margin: 5px 0 0;
             opacity: 0.3;
             animation: treeGlow 2s ease-in-out infinite;
         }
@@ -496,12 +473,6 @@
             flex-wrap: wrap;
             gap: 15px;
             font-weight: 600;
-        }
-        .cart-title img {
-            width: 24px;
-            height: 24px;
-            vertical-align: middle;
-            filter: brightness(0.8);
         }
         .cart-items { max-height: 400px; overflow-y: auto; }
         .cart-items::-webkit-scrollbar { width: 3px; }
@@ -715,7 +686,6 @@
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
         
-        /* ===== ГИРЛЯНДА СВЕРХУ ===== */
         .garland-top {
             position: fixed;
             top: 0;
@@ -742,12 +712,6 @@
         .garland-top span:nth-child(odd) { animation-delay: 0.5s; }
         .garland-top span:nth-child(3n) { animation-delay: 1s; }
         
-        @keyframes blink {
-            0% { opacity: 0.2; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
-        
-        /* ===== ГИРЛЯНДА ВНИЗУ ===== */
         .garland-bottom {
             position: fixed;
             bottom: 0;
@@ -773,6 +737,11 @@
         }
         .garland-bottom span:nth-child(even) { animation-delay: 0.5s; }
         .garland-bottom span:nth-child(3n+1) { animation-delay: 1s; }
+        
+        @keyframes blink {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
         
         .branch {
             position: fixed;
@@ -854,12 +823,6 @@
             transform: scale(1.03);
             box-shadow: 0 8px 25px rgba(212,84,122,0.3);
         }
-        .review-form button img {
-            width: 18px;
-            height: 18px;
-            object-fit: contain;
-            filter: brightness(1);
-        }
         
         .payment-info {
             background: rgba(255,255,255,0.03);
@@ -885,27 +848,22 @@
             bottom: 24px;
             right: 24px;
             z-index: 998;
-            width: 44px;
-            height: 44px;
+            font-size: 28px;
             cursor: pointer;
             opacity: 0.2;
             transition: all 0.3s;
             background: none;
             border: none;
             padding: 0;
-        }
-        .admin-trigger img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: brightness(0.5);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .admin-trigger:hover {
             opacity: 0.8;
             transform: scale(1.1);
-        }
-        .admin-trigger:hover img {
-            filter: brightness(1);
         }
         
         .admin-panel {
@@ -1049,36 +1007,27 @@
             min-height: 24px;
         }
         
-        /* ===== СТИЛИ ДЛЯ ИКОНОК ===== */
-        .icon-fix {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            vertical-align: middle;
-        }
-        
         @media (max-width: 768px) {
             .header h1 { font-size: 32px; }
             .products { grid-template-columns: 1fr; }
             .settings-panel { right: 10px; left: 10px; width: auto; }
             .header { padding: 25px 15px; }
             .cart-title { font-size: 18px; }
-            .hero-banner { height: 250px; }
-            .hero-banner .overlay { padding: 25px; }
-            .hero-banner .overlay h2 { font-size: 24px; }
+            .hero-banner { height: 220px; }
+            .hero-banner .overlay { padding: 20px; }
+            .hero-banner .overlay h2 { font-size: 22px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ГИРЛЯНДА СВЕРХУ -->
+    <!-- ГИРЛЯНДЫ -->
     <div class="garland-top" id="garlandTop">
         <span>⭐</span><span>✨</span><span>🎄</span><span>🌟</span><span>✨</span>
         <span>⭐</span><span>🎄</span><span>✨</span><span>⭐</span><span>🌟</span>
         <span>✨</span><span>🎄</span><span>⭐</span><span>✨</span><span>🌟</span>
     </div>
 
-    <!-- ГИРЛЯНДА ВНИЗУ -->
     <div class="garland-bottom" id="garlandBottom">
         <span>⭐</span><span>✨</span><span>🎄</span><span>🌟</span><span>✨</span>
         <span>⭐</span><span>🎄</span><span>✨</span><span>⭐</span><span>🌟</span>
@@ -1095,9 +1044,7 @@
         <div class="volume-value" id="volumeDisplay">70%</div>
     </div>
 
-    <button class="admin-trigger" id="adminTrigger" title="Админ-панель">
-        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f338.png" alt="🌸" />
-    </button>
+    <button class="admin-trigger" id="adminTrigger">🌸</button>
 
     <div class="admin-password-modal" id="adminPasswordModal">
         <div class="modal-content">
@@ -1138,46 +1085,22 @@
         </div>
 
         <div class="tabs">
-            <button class="tab-btn active" data-tab="shop">
-                <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f6cd.png" alt="shop" class="icon-fix" />
-                Магазин
-            </button>
-            <button class="tab-btn" data-tab="reviews">
-                <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/2b50.png" alt="stars" class="icon-fix" />
-                Отзывы
-            </button>
+            <button class="tab-btn active" data-tab="shop">🛍️ Магазин</button>
+            <button class="tab-btn" data-tab="reviews">⭐ Отзывы</button>
         </div>
 
         <div class="tab-content active" id="tab-shop">
             <div class="categories">
-                <button class="cat-btn active" data-cat="all">
-                    <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f3e0.png" alt="all" class="icon-fix" />
-                    Все
-                </button>
-                <button class="cat-btn" data-cat="photo">
-                    <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4f8.png" alt="photo" class="icon-fix" />
-                    Фото
-                </button>
-                <button class="cat-btn" data-cat="video">
-                    <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f3a5.png" alt="video" class="icon-fix" />
-                    Видео
-                </button>
-                <button class="cat-btn" data-cat="costume">
-                    <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f457.png" alt="costume" class="icon-fix" />
-                    Костюмы
-                </button>
-                <button class="cat-btn" data-cat="custom">
-                    <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/2728.png" alt="custom" class="icon-fix" />
-                    На заказ
-                </button>
+                <button class="cat-btn active" data-cat="all">🏠 Все</button>
+                <button class="cat-btn" data-cat="photo">📸 Фото</button>
+                <button class="cat-btn" data-cat="video">🎥 Видео</button>
+                <button class="cat-btn" data-cat="costume">👗 Костюмы</button>
+                <button class="cat-btn" data-cat="custom">✨ На заказ</button>
             </div>
             <div class="products" id="products"></div>
             <div class="cart-section">
                 <div class="cart-title">
-                    <span>
-                        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f6d2.png" alt="cart" class="icon-fix" />
-                        Корзина
-                    </span>
+                    <span>🛒 Корзина</span>
                     <button class="select-btn" id="clear-cart" style="width: auto; padding: 8px 24px; font-size: 13px;">Очистить</button>
                 </div>
                 <div id="cart-items"></div>
@@ -1188,20 +1111,14 @@
         </div>
 
         <div class="tab-content" id="tab-reviews">
-            <h3 style="color:#d4547a; margin-bottom:18px; font-size:22px; display:flex; align-items:center; gap:10px;">
-                <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/2b50.png" alt="stars" style="width:24px;height:24px;" />
-                Отзывы
-            </h3>
+            <h3 style="color:#d4547a; margin-bottom:18px; font-size:22px;">⭐ Отзывы</h3>
             <div id="reviews-list"></div>
             
             <div id="review-block" style="display:none;">
                 <div class="review-form" id="review-form">
                     <input type="text" id="review-author" placeholder="Ваше имя" />
                     <input type="text" id="review-text" placeholder="Ваш отзыв..." />
-                    <button id="review-submit">
-                        <img src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/270d.png" alt="write" />
-                        Оставить
-                    </button>
+                    <button id="review-submit">✍️ Оставить</button>
                 </div>
             </div>
             <div id="review-block-message" style="text-align:center; padding:20px; color:rgba(255,255,255,0.2); font-size:14px;">
@@ -1232,15 +1149,14 @@
     </div>
 
     <script>
-        // ===== ИКОНКИ ТОВАРОВ =====
+        // ===== ТОВАРЫ =====
         const productIcons = {
-            'photo': 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f4f7.png',
-            'video': 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f3a5.png',
-            'costume': 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f457.png',
-            'custom': 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/2728.png'
+            'photo': '📸',
+            'video': '🎥',
+            'costume': '👗',
+            'custom': '✨'
         };
 
-        // ===== ТОВАРЫ =====
         const products = [
             { id: 1, name: "Одно любое фото", price: 50, desc: "1 фото на ваш выбор", category: "photo" },
             { id: 2, name: "5 любых фото", price: 200, desc: "5 фото (выгодно!)", category: "photo" },
@@ -1323,10 +1239,10 @@
                 return;
             }
             container.innerHTML = filtered.map(p => {
-                const icon = productIcons[p.category] || 'https://cdn.jsdelivr.net/npm/emoji-datasource-apple@14.0.0/img/apple/64/1f338.png';
+                const icon = productIcons[p.category] || '🌸';
                 return `
                 <div class="product-card">
-                    <img class="product-icon" src="${icon}" alt="${p.category}" />
+                    <span class="product-icon">${icon}</span>
                     <div class="product-title">${p.name}</div>
                     <div class="product-desc">${p.desc}</div>
                     <div class="product-price">${p.price} ₽</div>
