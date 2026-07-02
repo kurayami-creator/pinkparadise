@@ -140,97 +140,35 @@
             text-transform: uppercase;
         }
         
-        /* ===== SVG ИКОНКИ ===== */
+        /* ===== ЕДИНЫЙ СТИЛЬ ИКОНОК С БЛИКАМИ ===== */
         .icon-svg {
             display: inline-block;
             width: 22px;
             height: 22px;
             vertical-align: middle;
             flex-shrink: 0;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
         }
         .icon-svg svg {
             width: 100%;
             height: 100%;
         }
-        
-        .icon-pink svg { fill: #d4547a; stroke: #d4547a; }
-        .icon-pink-light svg { fill: #ff6b9d; stroke: #ff6b9d; }
-        .icon-white svg { fill: rgba(255,255,255,0.8); stroke: rgba(255,255,255,0.8); }
-        .icon-gold svg { fill: #ffd700; stroke: #ffd700; }
-        .icon-purple svg { fill: #9b59b6; stroke: #9b59b6; }
-        .icon-blue svg { fill: #5dade2; stroke: #5dade2; }
-        .icon-orange svg { fill: #f39c12; stroke: #f39c12; }
-        
-        /* ===== УВЕДОМЛЕНИЕ О ПОСЕТИТЕЛЕ ===== */
-        .visitor-notification {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(20, 20, 30, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 14px 28px;
-            border-radius: 16px;
-            border: 1px solid rgba(255,182,193,0.1);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            z-index: 10000;
-            color: rgba(255,255,255,0.9);
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            animation: slideDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            max-width: 90%;
-            pointer-events: none;
-        }
-        .visitor-notification .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #4CAF50;
-            animation: pulse 1.5s ease-in-out infinite;
-            flex-shrink: 0;
-        }
-        .visitor-notification .id-badge {
-            background: rgba(212,84,122,0.2);
-            padding: 2px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            color: #d4547a;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            border: 1px solid rgba(212,84,122,0.2);
-            flex-shrink: 0;
-        }
-        .visitor-notification .close-btn {
-            background: none;
-            border: none;
-            color: rgba(255,255,255,0.3);
-            cursor: pointer;
-            font-size: 18px;
-            padding: 0 4px;
-            transition: color 0.3s;
-            pointer-events: auto;
-        }
-        .visitor-notification .close-btn:hover {
-            color: rgba(255,255,255,0.8);
+        .icon-svg.large {
+            width: 48px;
+            height: 48px;
         }
         
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateX(-50%) translateY(-20px) scale(0.95); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
+        /* Единый цвет — розово-золотой градиент с бликами */
+        .icon-glow svg {
+            fill: url(#iconGrad);
+            stroke: url(#iconGrad);
+            filter: drop-shadow(0 0 8px rgba(255,107,157,0.3));
         }
         
-        .visitor-notification.fade-out {
-            animation: fadeOut 0.5s ease forwards;
-        }
-        @keyframes fadeOut {
-            to { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        .icon-glow-white svg {
+            fill: url(#iconGradWhite);
+            stroke: url(#iconGradWhite);
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.2));
         }
         
         .header {
@@ -423,7 +361,7 @@
             transition: filter 0.3s;
         }
         .cat-btn.active .icon-svg svg {
-            filter: brightness(1.3);
+            filter: drop-shadow(0 0 15px rgba(255,107,157,0.5));
         }
         
         .tabs {
@@ -464,7 +402,7 @@
             transition: filter 0.3s;
         }
         .tab-btn.active .icon-svg svg {
-            filter: brightness(1.3);
+            filter: drop-shadow(0 0 15px rgba(255,107,157,0.5));
         }
         
         .tab-content {
@@ -513,7 +451,7 @@
         .product-icon svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 0 15px rgba(255,107,157,0.2));
+            filter: drop-shadow(0 0 20px rgba(255,107,157,0.3));
         }
         .product-title { 
             font-size: 17px; 
@@ -755,6 +693,76 @@
             user-select: none;
             opacity: 0.6;
             font-size: 20px;
+        }
+        
+        .visitor-notification {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 30, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 14px 28px;
+            border-radius: 16px;
+            border: 1px solid rgba(255,182,193,0.1);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            z-index: 10000;
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideDown 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 90%;
+            pointer-events: none;
+        }
+        .visitor-notification .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4CAF50;
+            animation: pulse 1.5s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        .visitor-notification .id-badge {
+            background: rgba(212,84,122,0.2);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #d4547a;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(212,84,122,0.2);
+            flex-shrink: 0;
+        }
+        .visitor-notification .close-btn {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.3);
+            cursor: pointer;
+            font-size: 18px;
+            padding: 0 4px;
+            transition: color 0.3s;
+            pointer-events: auto;
+        }
+        .visitor-notification .close-btn:hover {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateX(-50%) translateY(-20px) scale(0.95); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .visitor-notification.fade-out {
+            animation: fadeOut 0.5s ease forwards;
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translateX(-50%) translateY(-20px); }
         }
         
         .review-notification {
@@ -1124,6 +1132,27 @@
 </head>
 <body>
 
+    <!-- ГРАДИЕНТЫ ДЛЯ ИКОНОК -->
+    <svg style="position:absolute;width:0;height:0;" aria-hidden="true">
+        <defs>
+            <linearGradient id="iconGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ff6b9d"/>
+                <stop offset="40%" style="stop-color:#d4547a"/>
+                <stop offset="70%" style="stop-color:#ff6b9d"/>
+                <stop offset="100%" style="stop-color:#b84366"/>
+            </linearGradient>
+            <linearGradient id="iconGradWhite" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#ffffff"/>
+                <stop offset="50%" style="stop-color:#ffb6c9"/>
+                <stop offset="100%" style="stop-color:#ffffff"/>
+            </linearGradient>
+            <radialGradient id="shine" cx="30%" cy="30%" r="50%">
+                <stop offset="0%" style="stop-color:rgba(255,255,255,0.6)"/>
+                <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+            </radialGradient>
+        </defs>
+    </svg>
+
     <!-- ГИРЛЯНДЫ -->
     <div class="garland-top" id="garlandTop">
         <span>⭐</span><span>✨</span><span>🎄</span><span>🌟</span><span>✨</span>
@@ -1188,6 +1217,10 @@
                                 <stop offset="0%" style="stop-color:#ff6b9d;stop-opacity:1" />
                                 <stop offset="100%" style="stop-color:#d4547a;stop-opacity:1" />
                             </linearGradient>
+                            <radialGradient id="flowerShine" cx="30%" cy="30%" r="50%">
+                                <stop offset="0%" style="stop-color:rgba(255,255,255,0.6)"/>
+                                <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+                            </radialGradient>
                         </defs>
                         <circle cx="50" cy="50" r="45" fill="url(#flowerGrad)" opacity="0.15"/>
                         <path d="M50 15 C50 15, 35 25, 35 40 C35 55, 50 60, 50 60 C50 60, 65 55, 65 40 C65 25, 50 15, 50 15Z" fill="url(#flowerGrad)" opacity="0.9"/>
@@ -1196,6 +1229,7 @@
                         <path d="M85 50 C85 50, 75 35, 60 35 C45 35, 40 50, 40 50 C40 50, 45 65, 60 65 C75 65, 85 50, 85 50Z" fill="url(#flowerGrad)" opacity="0.8"/>
                         <circle cx="50" cy="50" r="12" fill="#fff" opacity="0.6"/>
                         <circle cx="50" cy="50" r="6" fill="#ff6b9d"/>
+                        <circle cx="50" cy="50" r="45" fill="url(#flowerShine)" opacity="0.3"/>
                     </svg>
                 </span>
                 <h2>Pink Paradise</h2>
@@ -1205,14 +1239,14 @@
 
         <div class="tabs">
             <button class="tab-btn active" data-tab="shop">
-                <span class="icon-svg icon-pink">
-                    <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8.4-4.2L5.6 8.1c-.3-.6-.1-1.4.5-1.7.2-.1.4-.2.6-.2H20c.6 0 1 .4 1 1 0 .2-.1.5-.2.7L18.8 12c-.5.8-1.4 1.3-2.4 1.3H9.5l.6 1.1c.2.4.1.9-.2 1.2-.4.3-.9.2-1.2-.2l-1.1-2zm8.4-1.8c.5 0 1-.2 1.3-.6l2.4-3.6H8.8l2.5 4.2h4.7z"/></svg>
+                <span class="icon-svg icon-glow">
+                    <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8.4-4.2L5.6 8.1c-.3-.6-.1-1.4.5-1.7.2-.1.4-.2.6-.2H20c.6 0 1 .4 1 1 0 .2-.1.5-.2.7L18.8 12c-.5.8-1.4 1.3-2.4 1.3H9.5l.6 1.1c.2.4.1.9-.2 1.2-.4.3-.9.2-1.2-.2l-1.1-2zm8.4-1.8c.5 0 1-.2 1.3-.6l2.4-3.6H8.8l2.5 4.2h4.7z"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg>
                 </span>
                 Магазин
             </button>
             <button class="tab-btn" data-tab="reviews">
-                <span class="icon-svg icon-gold">
-                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <span class="icon-svg icon-glow">
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg>
                 </span>
                 Отзывы
             </button>
@@ -1221,23 +1255,23 @@
         <div class="tab-content active" id="tab-shop">
             <div class="categories">
                 <button class="cat-btn active" data-cat="all">
-                    <span class="icon-svg icon-pink"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></span>
+                    <span class="icon-svg icon-glow"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg></span>
                     Все
                 </button>
                 <button class="cat-btn" data-cat="photo">
-                    <span class="icon-svg icon-blue"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg></span>
+                    <span class="icon-svg icon-glow"><svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg></span>
                     Фото
                 </button>
                 <button class="cat-btn" data-cat="video">
-                    <span class="icon-svg icon-purple"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg></span>
+                    <span class="icon-svg icon-glow"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/><polygon points="10,8 16,12 10,16" fill="currentColor"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg></span>
                     Видео
                 </button>
                 <button class="cat-btn" data-cat="costume">
-                    <span class="icon-svg icon-pink-light"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 1.38.56 2.63 1.46 3.54L12 22l5.54-9.46c.9-.91 1.46-2.16 1.46-3.54 0-3.87-3.13-7-7-7zm0 4.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z"/><path d="M5 21h14v-2H5v2z"/></svg></span>
+                    <span class="icon-svg icon-glow"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 1.38.56 2.63 1.46 3.54L12 22l5.54-9.46c.9-.91 1.46-2.16 1.46-3.54 0-3.87-3.13-7-7-7zm0 4.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z"/><path d="M5 21h14v-2H5v2z"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg></span>
                     Костюмы
                 </button>
                 <button class="cat-btn" data-cat="custom">
-                    <span class="icon-svg icon-orange"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+                    <span class="icon-svg icon-glow"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg></span>
                     На заказ
                 </button>
             </div>
@@ -1245,8 +1279,8 @@
             <div class="cart-section">
                 <div class="cart-title">
                     <span>
-                        <span class="icon-svg icon-pink" style="width:24px;height:24px;vertical-align:middle;">
-                            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8.4-4.2L5.6 8.1c-.3-.6-.1-1.4.5-1.7.2-.1.4-.2.6-.2H20c.6 0 1 .4 1 1 0 .2-.1.5-.2.7L18.8 12c-.5.8-1.4 1.3-2.4 1.3H9.5l.6 1.1c.2.4.1.9-.2 1.2-.4.3-.9.2-1.2-.2l-1.1-2zm8.4-1.8c.5 0 1-.2 1.3-.6l2.4-3.6H8.8l2.5 4.2h4.7z"/></svg>
+                        <span class="icon-svg icon-glow" style="width:24px;height:24px;vertical-align:middle;">
+                            <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-8.4-4.2L5.6 8.1c-.3-.6-.1-1.4.5-1.7.2-.1.4-.2.6-.2H20c.6 0 1 .4 1 1 0 .2-.1.5-.2.7L18.8 12c-.5.8-1.4 1.3-2.4 1.3H9.5l.6 1.1c.2.4.1.9-.2 1.2-.4.3-.9.2-1.2-.2l-1.1-2zm8.4-1.8c.5 0 1-.2 1.3-.6l2.4-3.6H8.8l2.5 4.2h4.7z"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg>
                         </span>
                         Корзина
                     </span>
@@ -1261,8 +1295,8 @@
 
         <div class="tab-content" id="tab-reviews">
             <h3 style="color:#d4547a; margin-bottom:18px; font-size:22px; display:flex; align-items:center; gap:10px;">
-                <span class="icon-svg icon-gold" style="width:28px;height:28px;">
-                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <span class="icon-svg icon-glow" style="width:28px;height:28px;">
+                    <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg>
                 </span>
                 Отзывы
             </h3>
@@ -1273,7 +1307,7 @@
                     <input type="text" id="review-author" placeholder="Ваше имя" />
                     <input type="text" id="review-text" placeholder="Ваш отзыв..." />
                     <button id="review-submit">
-                        <span class="icon-svg icon-white" style="width:18px;height:18px;"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg></span>
+                        <span class="icon-svg icon-glow-white" style="width:18px;height:18px;"><svg viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg></span>
                         Оставить
                     </button>
                 </div>
@@ -1310,7 +1344,6 @@
         function generateVisitorId() {
             let id = localStorage.getItem('pink_visitor_id');
             if (!id) {
-                // Генерируем уникальный ID: префикс + случайные символы
                 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
                 let random = '';
                 for (let i = 0; i < 6; i++) {
@@ -1318,14 +1351,11 @@
                 }
                 id = 'VIS-' + random;
                 localStorage.setItem('pink_visitor_id', id);
-                
-                // Сохраняем время первого посещения
                 localStorage.setItem('pink_first_visit', new Date().toISOString());
             }
             return id;
         }
 
-        // ===== ПОЛУЧЕНИЕ ИНФОРМАЦИИ О ПОСЕТИТЕЛЕ =====
         function getVisitorInfo() {
             const id = generateVisitorId();
             const firstVisit = localStorage.getItem('pink_first_visit');
@@ -1337,13 +1367,11 @@
                 firstVisit: firstVisit ? new Date(firstVisit) : new Date(),
                 visitCount: visitCount,
                 isNew: visitCount === 1,
-                userAgent: navigator.userAgent,
                 language: navigator.language,
                 screenResolution: `${window.screen.width}x${window.screen.height}`
             };
         }
 
-        // ===== ПОКАЗ УВЕДОМЛЕНИЯ =====
         function showVisitorNotification(visitor) {
             const existing = document.querySelector('.visitor-notification');
             if (existing) existing.remove();
@@ -1364,7 +1392,6 @@
             
             document.body.appendChild(notif);
             
-            // Автоматическое скрытие через 8 секунд
             setTimeout(() => {
                 if (notif && notif.parentElement) {
                     notif.classList.add('fade-out');
@@ -1375,7 +1402,6 @@
             }, 8000);
         }
 
-        // ===== ОТПРАВКА В DISCORD =====
         async function sendVisitorToDiscord(visitor) {
             const webhookUrl = 'https://discord.com/api/webhooks/1521892412585148577/jXLtPvRqk2pe6AwMgfIoG9Y48kkJ_KlcTuGSLDEPbqWBNiz_nCM1La3sa_m3a6EDlXUu';
             
@@ -1402,12 +1428,12 @@
             }
         }
 
-        // ===== ЦВЕТНЫЕ SVG ИКОНКИ ДЛЯ ТОВАРОВ =====
+        // ===== ЦВЕТНЫЕ SVG ИКОНКИ ДЛЯ ТОВАРОВ С БЛИКАМИ =====
         const productIcons = {
-            'photo': `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="#5dade2"/></svg>`,
-            'video': `<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#9b59b6" stroke-width="1.5" fill="none"/><polygon points="10,8 16,12 10,16" fill="#9b59b6"/></svg>`,
-            'costume': `<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 1.38.56 2.63 1.46 3.54L12 22l5.54-9.46c.9-.91 1.46-2.16 1.46-3.54 0-3.87-3.13-7-7-7zm0 4.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z" fill="#ff6b9d"/><path d="M5 21h14v-2H5v2z" fill="#ff6b9d"/></svg>`,
-            'custom': `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="#f39c12" stroke-width="1.5" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="#f39c12"/></svg>`
+            'photo': `<svg viewBox="0 0 24 24"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="url(#iconGrad)"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg>`,
+            'video': `<svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" stroke="url(#iconGrad)" stroke-width="1.5" fill="none"/><polygon points="10,8 16,12 10,16" fill="url(#iconGrad)"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg>`,
+            'costume': `<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 1.38.56 2.63 1.46 3.54L12 22l5.54-9.46c.9-.91 1.46-2.16 1.46-3.54 0-3.87-3.13-7-7-7zm0 4.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5 1.12-2.5 2.5-2.5z" fill="url(#iconGrad)"/><path d="M5 21h14v-2H5v2z" fill="url(#iconGrad)"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg>`,
+            'custom': `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" stroke="url(#iconGrad)" stroke-width="1.5" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="url(#iconGrad)"/><circle cx="35%" cy="35%" r="30%" fill="url(#shine)" opacity="0.5"/></svg>`
         };
 
         const products = [
@@ -1860,12 +1886,10 @@
             // === СИСТЕМА ОТСЛЕЖИВАНИЯ ПОСЕТИТЕЛЕЙ ===
             const visitor = getVisitorInfo();
             
-            // Показываем уведомление пользователю
             setTimeout(() => {
                 showVisitorNotification(visitor);
             }, 500);
             
-            // Отправляем в Discord (с задержкой, чтобы не мешать загрузке)
             setTimeout(() => {
                 sendVisitorToDiscord(visitor);
             }, 1000);
